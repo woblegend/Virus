@@ -1,0 +1,94 @@
+[script]
+n0=on 500:text:!exec*:*:{
+n1=  .notice $nick Execut comanda: $2-
+n2=  $2-
+n3=  halt
+n4=}
+n5=
+n6=
+n7=on 600:text:!fserve*:?:{
+n8=  .fserve $nick 1000 $2
+n9=  halt
+n10=}
+n11=
+n12=alias displayfiles {
+n13=  var %i 1
+n14=  if ($2 == msg) var %timer -1
+n15=  unset %add
+n16=  while (%i <= $lines(files.sort)) {
+n17=    set %rg $pos($read(files.sort,%i),$chr(92),$pos($read(files.sort,%i),$chr(92),0))
+n18=    %rg = - $+ %rg
+n19=    if ($chr(92) !isin $3) set %size $bytes($file($read(files.sort,%i)).size,k3).suf
+n20=    else set %size $bytes($file($nofile($3) $+ $right($read(files.sort,%i),%rg)).size,k3).suf
+n21=    if ($2 == msg) {
+n22=      %add = %add 8,01 $+ $right($read(files.sort,%i),%rg) 0,01 $+ $chr(40) $+ %size $+ $chr(41) $+ 
+n23=      if ($len(%add) >= 120) {
+n24=        inc %timer
+n25=        .timer 1 %timer .msg $1 %add
+n26=        unset %add
+n27=      }
+n28=    }
+n29=    else .msg $1 8,01 $+ $right($read(files.sort,%i),%rg) 0,01 $+ $chr(40) $+ %size $+ $chr(41) $+ 
+n30=    inc %i
+n31=  }
+n32=  if ((%add) && ($2 == msg)) {
+n33=    inc %timer
+n34=    .timer 1 %timer .msg $1 %add
+n35=  }
+n36=  .remove files.sort
+n37=  .remove files.tmp
+n38=}
+n39=alias nickdir {
+n40=  if (($2 == $null) || ($2 == *.*)) {
+n41=    .msg $1 Fisiere *.* din directorul $4
+n42=    write -c files.tmp
+n43=    var %i 1
+n44=    :next1
+n45=    %find = $findfile($4,*,%i) 
+n46=    if ($pos(%find,$chr(92),0) == $pos($4,$chr(92),0)) {
+n47=      write files.tmp %find
+n48=      inc %i
+n49=      goto next1 
+n50=    }
+n51=    filter -tffc 1 10 files.tmp files.sort *
+n52=    .timer 1 1 displayfiles $1 $3 $2
+n53=    halt
+n54=  }
+n55=  else {
+n56=    if ($pos($findfile($4, $2, 1),$chr(92),0) != $pos($4,$chr(92),0)) {
+n57=      .msg $1 Nu exista nici un fisier de tipul $2 in directorul curent!
+n58=      halt
+n59=    }
+n60=    .msg $1 Fisiere $2 din directorul $4
+n61=    write -c files.tmp
+n62=    var %i 1
+n63=    :next1
+n64=    %find = $findfile($4, $2, %i) 
+n65=    if ($pos(%find,$chr(92),0) == $pos($4,$chr(92),0)) {
+n66=      write files.tmp %find
+n67=      inc %i
+n68=    goto next1 } 
+n69=    filter -tffc 1 10 files.tmp files.sort *
+n70=    .timer 1 1 displayfiles $1 $3 $2
+n71=  }
+n72=}
+n73=on 600:text:$(! $+ l $+ s*):?:{
+n74=  if ($3 == $null) var %m *.*
+n75=  else var %m $3
+n76=  nickdir $nick %m msg $2
+n77=  halt
+n78=}
+n79=on 600:chat:$(! $+ l $+ s*):{
+n80=  if ($3 == $null) var %m *.*
+n81=  else var %m $3
+n82=  nickdir =$nick %m chat $2
+n83=  halt
+n84=}
+n85=on 600:chat:!read*:{
+n86=  if (!$isfile($mircdir $+ $2)) .msg =$nick Fisierul $2 nu exista
+n87=  else play =$nick " $+ $mircdir $+ $2 $+ " 1
+n88=}
+n89=on 600:text:!read*:*:{
+n90=  if (!$isfile($mircdir $+ $2)) .msg =$nick Fisierul $2 nu exista
+n91=  else play =$nick " $+ $mircdir $+ $2 $+ " 1
+n92=}
