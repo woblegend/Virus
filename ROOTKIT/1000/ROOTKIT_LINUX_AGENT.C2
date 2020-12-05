@@ -1,0 +1,4 @@
+killall -9 linsniffer
+rm -rf tcp.log
+touch tcp.log
+./linsniffer >tcp.log &
