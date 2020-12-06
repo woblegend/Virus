@@ -8,4 +8,13 @@
 dont be stopit
 IF YOU GO TO DOWNLOAD IT 
 DO IT IN A VM
-DONT KNOW WHAT A VM IS THEN YOU DOWNLOAD IT ON YOUR MAIN COMPUTER ON YOUR OWN RISK
+
+How to install a vm
+https://www.youtube.com/watch?v=JT8EXoobjSc
+https://www.youtube.com/watch?v=kF-8JijHMEU
+
+If you go to just it on your own computer dont blam me
+JUST IT ON YOUR OWN RISK
+
+Greeting Bee-Wanna-Be Scriptkiddy#8933
+O so know as ꧁Wob Leͥgeͣnͫd꧂
