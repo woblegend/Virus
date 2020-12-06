@@ -1,9 +1,4 @@
-# Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT #
-# Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT #
-# Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT #
-# Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT #
-# Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT #
-# Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT # # Virus ALERT #
+# # # Virus ALERT # # Virus ALERT # # Virus ALERT # # #
 
 dont be stopit
 IF YOU GO TO DOWNLOAD IT 
