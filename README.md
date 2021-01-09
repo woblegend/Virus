@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=kF-8JijHMEU
 If you go to just it on your own computer dont blam me
 JUST IT ON YOUR OWN RISK
 
-Greeting Bee-Wanna-Be Scriptkiddy#8933
+Greeting Bee-Wanna-Be Scriptkiddy#8933   wobbecom#8933
 O so know as ꧁Wob Leͥgeͣnͫd꧂
 
 kapish2008@gmail.com Kapish TIwari we are watching you
